@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../index.css";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import { Bars3Icon } from "@heroicons/react/24/solid";
 
 function Header({ className }: { className?: string }) {
   const navbarItems = [
@@ -55,9 +56,11 @@ function Header({ className }: { className?: string }) {
     >
       <Navbar.Toggle
         aria-controls="navbarNav"
-        className={`border ${darkMode ? 'border-white' : 'border-black'}`}
-      />
-      <Navbar.Collapse id="navbarNav">
+        className={`border-none ${darkMode ? 'border-white' : 'border-black'}`}
+      >
+        <Bars3Icon className={`h-8 w-8 ${darkMode ? 'text-slate-200' : 'text-slate-950'}`} />
+      </Navbar.Toggle>
+      <Navbar.Collapse id="navbarNav" color="red" >
         <ThemeSwitcher />
         <Nav className="ms-auto">
           {navbarItems.map((item) => (

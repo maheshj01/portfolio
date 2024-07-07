@@ -4,6 +4,9 @@ import { useDarkMode } from "../contexts/AppThemeProvider";
 import avatarImage from '../assets/img/public_profile.jpg';
 import pdf from '../assets/docs/My_Resume.pdf';
 import { Button } from "react-bootstrap";
+import Skills from "./Skills";
+import Experience from "./Experience";
+
 function Main() {
     const { darkMode } = useDarkMode();
 
@@ -11,12 +14,16 @@ function Main() {
         light: {
             text: "text-gray-800",
             button: "hover:bg-blue-600 text-black ",
-            avatar: "border-slate-50"
+            avatar: "border-slate-50",
+            skillsGradient: "bg-gradient-to-b from-blue-100 to-teal-100",
+            experienceGradient: "bg-gradient-to-b from-teal-100 to-blue-50"
         },
         dark: {
             text: "text-gray-100",
             button: "hover:bg-blue-700 text-black ",
-            avatar: "border-slate-600"
+            avatar: "border-slate-600",
+            skillsGradient: "bg-gradient-to-b from-gray-900 to-gray-800",
+            experienceGradient: "bg-gradient-to-b from-gray-800 to-gray-700"
         }
     };
 
@@ -62,7 +69,14 @@ function Main() {
                     Blog
                 </Button>
             </div>
-            <div className="h-80" />
+            <div className="h-40" />
+            <div id="skills" className={`${currentTheme.skillsGradient}`}>
+                <Skills />
+            </div>
+            <div id="experience" className={`${currentTheme.experienceGradient}`}>
+                <Experience />
+            </div>
+            <div className="h-40" />
         </main >
     );
 }

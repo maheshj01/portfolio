@@ -23,7 +23,7 @@ function App() {
   const currentTheme = darkMode ? themeStyles.dark : themeStyles.light;
 
   return (
-    <div className={`min-h-full flex flex-col ${currentTheme.background}`}>
+    <div id="about" className={`min-h-full flex flex-col ${currentTheme.background}`}>
       <Header className="bg-transparent" />
       <div className="flex-grow mt-16"> {/* Add padding-top here */}
         <Main />

@@ -11,43 +11,36 @@ function Header({ className }: { className?: string }) {
   const navbarItems = [
     {
       id: 1,
-      name: "Blog",
-      url: "https://blog.maheshjamdade.com",
-      target: "_blank",
-    },
-    {
-      id: 2,
       name: "Docs",
       url: "https://docs.maheshjamdade.com",
       target: "_blank",
     },
     {
-      id: 3,
+      id: 2,
       name: "About",
       url: "#about",
       target: "_self",
     },
     {
-      id: 4,
+      id: 3,
       name: "Projects",
       url: "#projects",
       target: "_self",
     },
     {
-      id: 5,
+      id: 4,
       name: "Skills",
       url: "#skills",
       target: "_self",
     },
     {
-      id: 6,
-      name: "Let's Connect",
-      url: "#letsconnect",
+      id: 5,
+      name: "Experience",
+      url: "#experience",
       target: "_self",
     },
   ];
   const { darkMode } = useDarkMode();
-
   return (
     <Navbar
       className={`px-4 ${className} fixed-top ${darkMode ? 'bg-gray-900 bg-opacity-80' : 'bg-white bg-opacity-80'

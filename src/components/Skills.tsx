@@ -5,10 +5,12 @@ import { SiDart, SiPython, SiReact, SiFlutter, SiAndroid, SiGit, SiNodedotjs, Si
 import { IconType } from "react-icons";
 
 const SkillCard = ({ skill, Icon, color }: { skill: string, Icon: IconType, color: string }) => {
+    const { darkMode } = useDarkMode();
+
     return (
-        <div className="flex flex-col items-center p-4 bg-white bg-opacity-20 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+        <div className="flex flex-col items-center p-4  bg-opacity-20 rounded-lg transition-shadow duration-300">
             <Icon className={color} size={32} />
-            <span className="mt-2 text-lg font-semibold">{skill}</span>
+            <span className={`${darkMode ? 'text-white' : 'text-black'} mt-2 text-lg font-semibold`}>{skill}</span>
         </div>
     );
 };

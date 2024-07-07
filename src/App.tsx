@@ -23,12 +23,13 @@ function App() {
   const currentTheme = darkMode ? themeStyles.dark : themeStyles.light;
 
   return (
-    <div id="about" className={`min-h-full flex flex-col ${currentTheme.background}`}>
+    <div id="about" className={`flex flex-col ${currentTheme.background}`}>
       <Header className="bg-transparent" />
-      <div className="flex-grow mt-16"> {/* Add padding-top here */}
+      <div className="flex-grow mt-16">
         <Main />
       </div>
-      <Footer year="2024" />
+      <Footer className="flex-grow" year="2024" />
+
     </div>
   );
 }

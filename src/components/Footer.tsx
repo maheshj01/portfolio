@@ -3,7 +3,7 @@ import { FaCode, FaGithub, FaLinkedin, FaMedium, FaStackOverflow, FaTwitter } fr
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import Tooltip from 'react-bootstrap/Tooltip'
 import { OverlayTrigger } from "react-bootstrap";
-const Footer = ({ year }: { year: string }) => {
+const Footer = ({ year, className }: { year: string, className: string }) => {
   const { darkMode } = useDarkMode();
 
   const socialLinks = [
@@ -16,7 +16,7 @@ const Footer = ({ year }: { year: string }) => {
   ];
 
   return (
-    <footer className={`py-6 ${darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-800"}`}>
+    <footer className={`py-6 ${darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-800"} ${className}`}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0 text-center md:text-left">

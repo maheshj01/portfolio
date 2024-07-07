@@ -1,7 +1,8 @@
 // src/components/Experience.js
-import React from "react";
+import React, { useEffect } from "react";
 import { useDarkMode } from "../contexts/AppThemeProvider";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { once } from "process";
 
 const ExperienceItem = ({ title, company, period, description, location, index }: { title: string, location: string, company: string, period: string, description: string[], index: number }) => {
     const { darkMode } = useDarkMode();
@@ -9,15 +10,29 @@ const ExperienceItem = ({ title, company, period, description, location, index }
     const bgColor = darkMode ? "bg-gray-800" : "bg-white";
     const timelineColor = darkMode ? "bg-purple-500" : "bg-purple-400";
 
+    const controls = useAnimation();
+    const ref = React.useRef(null);
+    const inView = useInView(ref, { once: true, amount: 0.1 });
+
+    useEffect(() => {
+        if (inView) {
+            controls.start("visible");
+        }
+    }, [controls, inView]);
+
     return (
-        <div className="flex">
+        <div className="flex" ref={ref}>
             <div className="w-1/12 relative mr-8">
                 <div className={`absolute left-1/2 transform -translate-x-1/2 h-full w-1 ${timelineColor}`}></div>
                 <div className={`absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full ${timelineColor} border-4 ${darkMode ? 'border-gray-900' : 'border-blue-100'}`} style={{ top: '24px' }}></div>
             </div>
             <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial="hidden"
+                animate={controls}
+                variants={{
+                    visible: { opacity: 1, x: 0 },
+                    hidden: { opacity: 0, x: -50 }
+                }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 className={`w-11/12 mb-8 p-6 rounded-lg shadow-lg ${bgColor}`}
             >
@@ -38,7 +53,17 @@ function Experience() {
     const { darkMode } = useDarkMode();
     const bgColor = darkMode ? "bg-gray-800" : "bg-blue-50";
 
+
     const experiences = [
+        {
+            title: "CIS Graduate Research Assistant",
+            company: "University of Massachusetts Dartmouth",
+            location: "Dartmouth, MA",
+            period: "Jan 2024 – Present",
+            description: [
+
+            ]
+        },
         {
             title: "Software Engineer Intern",
             company: "Building Assure PBC",
@@ -85,16 +110,32 @@ function Experience() {
             ]
         }
     ];
+
     const gradientClass = darkMode
         ? "bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900"
         : "bg-gradient-to-b from-blue-100 via-purple-200 to-blue-100";
+
+    const controls = useAnimation();
+    const ref = React.useRef(null);
+    const inView = useInView(ref, { once: true, amount: 0.1 });
+
+    useEffect(() => {
+        if (inView) {
+            controls.start("visible");
+        }
+    }, [controls, inView]);
 
     return (
         <section className={`py-16 ${gradientClass}`}>
             <div className="container mx-auto px-4">
                 <motion.h2
-                    initial={{ opacity: 0, y: -50 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    ref={ref}
+                    initial="hidden"
+                    animate={controls}
+                    variants={{
+                        visible: { opacity: 1, y: 0 },
+                        hidden: { opacity: 0, y: -50 }
+                    }}
                     transition={{ duration: 0.5 }}
                     className={`text-4xl font-bold text-center mb-12 ${darkMode ? "text-gray-100" : "text-gray-800"}`}
                 >

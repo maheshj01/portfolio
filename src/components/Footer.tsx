@@ -3,16 +3,17 @@ import { FaCode, FaGithub, FaLinkedin, FaMedium, FaStackOverflow, FaTwitter } fr
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import Tooltip from 'react-bootstrap/Tooltip'
 import { OverlayTrigger } from "react-bootstrap";
+import { color } from "framer-motion";
 const Footer = ({ year, className }: { year: string, className: string }) => {
   const { darkMode } = useDarkMode();
 
   const socialLinks = [
-    { name: "Github", icon: FaGithub, url: "https://github.com/maheshmnj" },
-    { name: "LinkedIn", icon: FaLinkedin, url: "https://linkedin.com/in/maheshjamdade" },
-    { name: "Twitter", icon: FaTwitter, url: "https://twitter.com/maheshmnj" },
-    { name: "Leetcode", icon: FaCode, url: "https://leetcode.com/maheshjamdade/" },
-    { name: "Stackoverflow", icon: FaStackOverflow, url: "https://stackoverflow.com/users/8253662/mahesh-jamdade" },
-    { name: "medium", icon: FaMedium, url: "https://maheshjamdade.medium.com/" }
+    { name: "Github", icon: FaGithub, url: "https://github.com/maheshmnj", color: "text-gray-800" },
+    { name: "LinkedIn", icon: FaLinkedin, url: "https://linkedin.com/in/maheshjamdade", color: "text-blue-600" },
+    { name: "Twitter", icon: FaTwitter, url: "https://twitter.com/maheshmnj", color: "text-blue-400" },
+    { name: "Leetcode", icon: FaCode, url: "https://leetcode.com/maheshjamdade/", color: "text-orange-500" },
+    { name: "Stackoverflow", icon: FaStackOverflow, url: "https://stackoverflow.com/users/8253662/mahesh-jamdade", color: "text-orange-500" },
+    { name: "medium", icon: FaMedium, url: "https://maheshjamdade.medium.com/", color: darkMode ? "text-white" : "text-black" }
   ];
 
   return (
@@ -38,7 +39,7 @@ const Footer = ({ year, className }: { year: string, className: string }) => {
                     rel="noopener noreferrer"
                     className="text-decoration-none me-3"
                   >
-                    <Icon size={24} />
+                    <Icon size={24} className={social.color} />
                   </a>
                 </OverlayTrigger>
               );

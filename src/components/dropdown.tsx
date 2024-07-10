@@ -9,19 +9,24 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { MdArrowDownward } from "react-icons/md";
+import { IoIosArrowDown } from "react-icons/io";
 
 export function DropdownMenuButton({ options, selected, onClick }: { options: number[], selected: string, onClick: (value: number) => void }) {
     return (
         <DropdownMenu >
             <DropdownMenuTrigger asChild>
-                <p className="text-blue-700 dark:text-white font-bold flex justify-center text-center text-xl mt-1"> {selected}</p>
+                <div className="flex items-center mb-1">
+
+                    <p className="text-blue-700 dark:text-white font-bold flex justify-center text-center text-xl"> {selected}</p> <IoIosArrowDown className="w-4 h-4" />
+                </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-16">
+            <DropdownMenuContent className="w-8">
                 {
                     options.map((option) => {
                         return (
                             <DropdownMenuLabel
-                                className="cursor-pointer dark:text-white font-bold flex text-lg hover:bg-gray-100 hover:dark:text-black"
+                                className="cursor-pointer dark:text-white flex text-lg hover:bg-gray-100 hover:dark:text-black"
                                 key={option}
                                 onClick={onClick.bind(null, option)}
                             >{option}</DropdownMenuLabel>

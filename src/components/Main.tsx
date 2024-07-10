@@ -8,6 +8,7 @@ import Skills from "./Skills";
 import Experience from "./Experience";
 import Projects from "./Projects";
 import GHContribution from "./GHContribution";
+import { motion } from "framer-motion";
 
 function Main() {
     const { darkMode } = useDarkMode();
@@ -73,9 +74,14 @@ function Main() {
                     </div>
                 </div>
             </section>
-            <div className="mt-40 flex justify-center">
+            <motion.div
+                initial={{ y: 200, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.2, ease: "easeIn" }}
+                className="md:mt-40 xs:mt-2 flex justify-center"
+            >
                 <GHContribution username="maheshmnj" />
-            </div>
+            </motion.div>
             <div className="h-40" />
             <div id="skills" className={`${currentTheme.skillsGradient}`}>
                 <Skills />

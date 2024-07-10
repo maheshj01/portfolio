@@ -34,19 +34,7 @@ const GET_USER_DATA = gql`
   }
 `;
 
-const themeStyles = {
-    light: {
-        background: "bg-gradient-to-r from-blue-100 to-teal-100",
-        text: "text-gray-800"
-    },
-    dark: {
-        background: "bg-gradient-to-r from-gray-900 to-gray-800",
-        text: "text-gray-100"
-    }
-};
-
-
-function GHContribution({ username }: { username: string }) {
+function GHContribution({ username, className }: { username: string, className?: string }) {
     const { darkMode } = useDarkMode();
     // Calculate the date range for the current year
     const currentYear = new Date().getFullYear();
@@ -77,31 +65,6 @@ function GHContribution({ username }: { username: string }) {
         return day.color;
     }
 
-    function YearSelect() {
-        return (
-            <DropdownButton
-                style={{
-                    backgroundColor: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-                    fontSize: '20px'
-                }}
-                title={graphYear}>
-                {/* last 5 years */}
-                {[...Array(5)].map((_, i) => {
-                    const year = currentYear - i;
-                    return (
-                        <Dropdown.Item
-                            className='w-20 text-center'
-                            style={{ fontSize: '20px' }}
-                            key={year} onClick={() => setGraphYear(year)}>
-                            {year}
-                        </Dropdown.Item>
-                    );
-                })}
-            </DropdownButton>
-        );
-    }
-
-
     function DayContribution(props: { day: any, weekIndex: number, dayIndex: number }) {
         const { day, weekIndex, dayIndex } = props;
         return (
@@ -110,7 +73,6 @@ function GHContribution({ username }: { username: string }) {
                 className="w-2 h-2 sm:w-3 sm:h-3 xs:w-2 rounded-xs"
                 style={{
                     backgroundColor: getContributionColor(day.contributionCount, day),
-                    // border: `1px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`
                 }}
                 title={`${day.date}: ${day.contributionCount} contributions`}
             />
@@ -123,7 +85,7 @@ function GHContribution({ username }: { username: string }) {
     const weeks = data.user.contributionsCollection.contributionCalendar.weeks;
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     return (
-        <div className={`p-4 rounded-lg overflow-x-auto ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+        <div className={`p-4 rounded-lg overflow-x-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} ${className}`}>
             <div className='flex flex-grow space-x-2'>
                 <h2 className={`text-xl sm:text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Github Contributions

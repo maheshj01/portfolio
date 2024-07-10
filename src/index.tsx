@@ -5,14 +5,20 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./tailwind.css";
 import { AppThemeProvider } from "./contexts/AppThemeProvider";
+import { ApolloProvider } from '@apollo/client';
+import { client } from "./contexts/ApolloClient";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <AppThemeProvider>
-      <App />
-    </AppThemeProvider>
+    <ApolloProvider client={client}>
+      <AppThemeProvider>
+        <App />
+      </AppThemeProvider>
+    </ApolloProvider>
     ,
   </React.StrictMode>
 );

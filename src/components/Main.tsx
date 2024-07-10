@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import Skills from "./Skills";
 import Experience from "./Experience";
 import Projects from "./Projects";
+import GHContribution from "./GHContribution";
 
 function Main() {
     const { darkMode } = useDarkMode();
@@ -49,28 +50,31 @@ function Main() {
                     <p className={`text-xl md:text-2xl mt-4 ${currentTheme.text}`}>
                         Learn | Code | Build
                     </p>
+                    <div className="mt-8 flex flex-row justify-center space-x-4 sm:space-y-0 sm:space-x-4">
+                        <Button
+                            href={pdf}
+                            target="_blank"
+                            variant="outline-primary"
+                            rel="noopener noreferrer"
+                            className={`px-6 py-2 rounded-md font-semibold transition duration-300 ease-in-out transform hover:scale-105`}
+                        >
+                            Resume
+                        </Button>
+
+                        <Button
+                            href="https://blog.maheshjamdade.com"
+                            target="_blank"
+                            variant="outline-primary"
+                            rel="noopener noreferrer"
+                            className={`px-6 py-2 hover:text-white rounded-md font-semibold transition duration-300 ease-in-out transform hover:scale-105`}
+                        >
+                            Blog
+                        </Button>
+                    </div>
                 </div>
             </section>
-            <div className="mt-40 flex flex-row justify-center space-x-4 sm:space-y-0 sm:space-x-4">
-                <Button
-                    href={pdf}
-                    target="_blank"
-                    variant="outline-primary"
-                    rel="noopener noreferrer"
-                    className={`px-6 py-2 rounded-md font-semibold transition duration-300 ease-in-out transform hover:scale-105`}
-                >
-                    Resume
-                </Button>
-
-                <Button
-                    href="https://blog.maheshjamdade.com"
-                    target="_blank"
-                    variant="outline-primary"
-                    rel="noopener noreferrer"
-                    className={`px-6 py-2 hover:text-white rounded-md font-semibold transition duration-300 ease-in-out transform hover:scale-105`}
-                >
-                    Blog
-                </Button>
+            <div className="mt-40 flex justify-center">
+                <GHContribution username="maheshmnj" />
             </div>
             <div className="h-40" />
             <div id="skills" className={`${currentTheme.skillsGradient}`}>

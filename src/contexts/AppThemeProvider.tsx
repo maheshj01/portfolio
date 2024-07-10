@@ -16,9 +16,15 @@ export const AppThemeProvider: React.FC<{ children: ReactNode }> = ({
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
   const toggleDarkMode = () => {
-    setDarkMode((prevDarkMode) => !prevDarkMode);
-    // You can implement the logic to toggle dark mode globally in your application here
-    // For example, you can update CSS variables, toggle classes, or use a theme provider
+    setDarkMode((prevDarkMode) => {
+      const newDarkMode = !prevDarkMode;
+      if (newDarkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      return newDarkMode;
+    });
   };
 
   return (

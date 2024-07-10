@@ -121,7 +121,7 @@ function GHContribution({ username }: { username: string }) {
     if (error) return <p className='text-red-500 dark:text-red-400'>Error: {error.message}</p>;
 
     const weeks = data.user.contributionsCollection.contributionCalendar.weeks;
-
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     return (
         <div className={`p-4 rounded-lg overflow-x-auto ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
             <div className='flex flex-grow space-x-2'>
@@ -134,13 +134,20 @@ function GHContribution({ username }: { username: string }) {
                     selected={graphYear.toString()}
                 />
             </div>
-            <p className={`mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
+            <p className={`mb-2 ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
                 Total Contributions: {data.user.contributionsCollection.contributionCalendar.totalContributions}
             </p>
             <div className='w-full overflow-x-auto'>
                 <div className='inline-block w-full pr-2'>
+                    <div className='pl-2 flex gap-8 sm:gap-10 md:gap-10 lg:gap-8'>
+                        {months.map((month, index) => (
+                            <div key={index} className='w-10 text-xs sm:text-lg'>
+                                {month}
+                            </div>
+                        ))}
+                    </div>
                     {(
-                        <div className='flex gap-1 rounded-md overflow-x-auto p-2'>
+                        <div className='flex gap-1 rounded-md p-2'>
                             {weeks.map((week: any, weekIndex: number) => (
                                 <div key={weekIndex} className='flex flex-col gap-1'>
                                     {week.contributionDays.map((day: any, dayIndex: number) => (

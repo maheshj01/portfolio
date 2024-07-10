@@ -123,7 +123,7 @@ function GHContribution({ username }: { username: string }) {
     const weeks = data.user.contributionsCollection.contributionCalendar.weeks;
 
     return (
-        <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+        <div className={`p-4 rounded-lg overflow-x-auto ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
             <div className='flex flex-grow space-x-2'>
                 <h2 className={`text-xl sm:text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Github Contributions

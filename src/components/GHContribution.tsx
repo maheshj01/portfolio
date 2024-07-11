@@ -5,6 +5,7 @@ import { useDarkMode } from '../contexts/AppThemeProvider';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { DropdownMenuButton } from './dropdown';
+import { FaGithub } from 'react-icons/fa';
 
 const GET_USER_DATA = gql`
   query GetUserData($login: String!, $from: DateTime!, $to: DateTime!) {
@@ -89,15 +90,20 @@ function GHContribution({ username, className }: { username: string, className?:
     const days = ['Mon', 'Wed', 'Fri'];
     return (
         <div className={`p-4 rounded-lg overflow-x-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} ${className}`}>
-            <div className='flex flex-grow space-x-2'>
-                <h2 className={`text-xl sm:text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                    Github Contributions
-                </h2>
-                <DropdownMenuButton
-                    onClick={setGraphYear}
-                    options={[currentYear, currentYear - 1, currentYear - 2, currentYear - 3, currentYear - 4]}
-                    selected={graphYear.toString()}
-                />
+            <div className='flex flex-grow justify-between '>
+                <div className='flex space-x-2'>
+                    <h2 className={`text-xl sm:text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                        Github Contributions
+                    </h2>
+                    <DropdownMenuButton
+                        onClick={setGraphYear}
+                        options={[currentYear, currentYear - 1, currentYear - 2, currentYear - 3, currentYear - 4]}
+                        selected={graphYear.toString()}
+                    />
+                </div>
+                <FaGithub
+                    onClick={() => window.open(`https://github.com/${username}`, '_blank')}
+                    className='h-8 w-8 cursor-pointer' />
             </div>
             <p className={`mb-2 ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
                 Total Contributions: {data.user.contributionsCollection.contributionCalendar.totalContributions}

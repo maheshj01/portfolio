@@ -83,7 +83,10 @@ function GHContribution({ username, className }: { username: string, className?:
     if (error) return <p className='text-red-500 dark:text-red-400'>Error: {error.message}</p>;
 
     const weeks = data.user.contributionsCollection.contributionCalendar.weeks;
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+        'Dec']
+
+    const days = ['Mon', 'Wed', 'Fri'];
     return (
         <div className={`p-4 rounded-lg overflow-x-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} ${className}`}>
             <div className='flex flex-grow space-x-2'>
@@ -99,31 +102,41 @@ function GHContribution({ username, className }: { username: string, className?:
             <p className={`mb-2 ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
                 Total Contributions: {data.user.contributionsCollection.contributionCalendar.totalContributions}
             </p>
-            <div className='w-full overflow-x-auto'>
-                <div className='inline-block w-full pr-2'>
-                    <div className='pl-2 flex gap-8 sm:gap-10 md:gap-10 lg:gap-8'>
-                        {months.map((month, index) => (
-                            <div key={index} className='w-10 text-xs sm:text-lg'>
-                                {month}
-                            </div>
-                        ))}
-                    </div>
-                    {(
-                        <div className='flex gap-1 rounded-md p-2'>
-                            {weeks.map((week: any, weekIndex: number) => (
-                                <div key={weekIndex} className='flex flex-col gap-1'>
-                                    {week.contributionDays.map((day: any, dayIndex: number) => (
-                                        <DayContribution
-                                            key={`${weekIndex}-${dayIndex}`}
-                                            day={day}
-                                            weekIndex={weekIndex}
-                                            dayIndex={dayIndex}
-                                        />
-                                    ))}
+            <div className='flex items-center'>
+                <div className='flex flex-col gap-1 lg:mt-5 md:mt-4 sm: xs:mt-2 text-xs sm:text-lg'>
+                    {days.map((day, index) => (
+                        <div key={index} className='w-10 text-xs sm:text-lg dark:text-white'>
+                            {day}
+                        </div>
+                    ))}
+                </div>
+
+                <div className='w-full overflow-x-auto'>
+                    <div className='inline-block w-full pr-2'>
+                        <div className='pl-2 flex gap-8 sm:gap-10 md:gap-10 lg:gap-8'>
+                            {months.map((month, index) => (
+                                <div key={index} className='w-10 text-xs sm:text-lg dark:text-white'>
+                                    {month}
                                 </div>
                             ))}
                         </div>
-                    )}
+                        {(
+                            <div className='flex gap-1 rounded-md p-2'>
+                                {weeks.map((week: any, weekIndex: number) => (
+                                    <div key={weekIndex} className='flex flex-col gap-1'>
+                                        {week.contributionDays.map((day: any, dayIndex: number) => (
+                                            <DayContribution
+                                                key={`${weekIndex}-${dayIndex}`}
+                                                day={day}
+                                                weekIndex={weekIndex}
+                                                dayIndex={dayIndex}
+                                            />
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

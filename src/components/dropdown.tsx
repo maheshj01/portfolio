@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
 
 import {
     DropdownMenu,
@@ -9,7 +8,6 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { MdArrowDownward } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 
 export function DropdownMenuButton({ options, selected, onClick }: { options: number[], selected: string, onClick: (value: number) => void }) {
@@ -18,7 +16,7 @@ export function DropdownMenuButton({ options, selected, onClick }: { options: nu
             <DropdownMenuTrigger asChild>
                 <div className="flex items-center mb-1">
 
-                    <p className="text-blue-700 dark:text-white font-bold flex justify-center text-center text-xl"> {selected}</p> <IoIosArrowDown className="w-4 h-4" />
+                    <p className="text-blue-700 dark:text-white font-bold flex justify-center text-center text-xl"> {selected}</p> <IoIosArrowDown className="w-4 h-4 dark:text-white" />
                 </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-8">

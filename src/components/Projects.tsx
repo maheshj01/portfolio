@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import pastelogBanner from '../assets/img/Pastelog.png';
 import vocabhubBanner from '../assets/img/Vocabhub.jpg';
+import { FaGithub } from "react-icons/fa";
 interface Project {
     title: string;
     description: string;
@@ -25,21 +26,27 @@ const ProjectCard: React.FC<Project> = ({ title, description, technologies, gith
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
         >
-            <img src={image} alt={title} className="w-full h-48 object-cover" />
-            <div className="p-6">
-                <h3 className={`text-xl font-bold mb-2 ${textColor}`}>{title}</h3>
-                <p className={`${textColor} mb-4`}>{description}</p>
-                <div className="flex flex-wrap mb-4">
-                    {technologies.map((tech, index) => (
-                        <span key={index} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-200'} ${textColor} px-2 py-1 rounded-full text-sm mr-2 mb-2`}>
-                            {tech}
-                        </span>
-                    ))}
-                </div>
-                <div className="flex justify-between">
-                    <a href={githubLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">GitHub</a>
-                    {liveLink && <a href={liveLink} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Live Demo</a>}
-                    {playstore && <a href={playstore} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Playstore</a>}
+            <div className="flex flex-col w-full bg-gray-100 ">
+                <img src={image} alt={title} className="w-full h-48 object-cover" />
+                <div className="p-6 ">
+                    <h3 className={`text-xl font-bold mb-2 ${textColor}`}>{title}</h3>
+                    <p className={`${textColor} mb-4`}>{description}</p>
+                    <div className="h-16">
+                        <div className="flex flex-wrap">
+                            {technologies.map((tech, index) => (
+                                <span key={index} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-200'} ${textColor} px-2 py-1 rounded-full text-sm mr-2 mb-2`}>
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className='h-8' />
+                    <div className="flex justify-between">
+                        <a href={githubLink} target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-600"><FaGithub /> </a>
+                        {liveLink && <a href={liveLink} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Live Demo</a>}
+                        {playstore && <a href={playstore} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Playstore</a>}
+                    </div>
                 </div>
             </div>
         </motion.div>
@@ -61,7 +68,7 @@ const Projects: React.FC = () => {
         {
             title: "Vocabhub",
             description: "A crowd-sourced platform for improving your Vocabulary . Users can add new words, meanings, and examples.",
-            technologies: ["Flutter", "Dart", "Supabase", "PostgreSQL", 'Firebase'],
+            technologies: ["Flutter", "Dart", "Supabase", "PostgreSQL", "Firebase"],
             githubLink: "https://github.com/maheshmnj/vocabhub",
             image: vocabhubBanner,
             playstore: "https://play.google.com/store/apps/details?id=com.vocabhub.app"

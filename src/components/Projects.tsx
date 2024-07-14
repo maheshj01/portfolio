@@ -98,8 +98,8 @@ const Projects: React.FC = () => {
         },
         {
             title: "Portfolio",
-            description: "This portfolio website is built using React, TypeScript, and Tailwind CSS. Hosted on Vercel with CI/CD.",
-            technologies: ["React", "TypeScript", "Tailwind CSS"],
+            description: "This portfolio website is built using React, TypeScript, and Tailwind CSS with Github. Hosted on Vercel with CI/CD.",
+            technologies: ["React", "TypeScript", "Tailwind CSS", "Github API"],
             githubLink: "https://github.com/maheshmn/portfolio:",
             image: portfolio,
         },

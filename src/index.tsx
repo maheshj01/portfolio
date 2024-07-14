@@ -19,7 +19,6 @@ root.render(
         <App />
       </AppThemeProvider>
     </ApolloProvider>
-    ,
   </React.StrictMode>
 );
 

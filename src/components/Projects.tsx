@@ -18,23 +18,46 @@ interface Project {
 const ProjectCard: React.FC<Project> = ({ title, description, technologies, githubLink, liveLink, image, playstore }) => {
     const { darkMode } = useDarkMode();
     const bgColor = darkMode ? "bg-gray-800" : "bg-white";
-    const textColor = darkMode ? "text-gray-100" : "text-gray-800";
+    const textColor = darkMode ? "text-black" : "text-gray-800";
 
     return (
         <motion.div
             className={`${bgColor} rounded-lg shadow-lg overflow-hidden`}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3 }}
         >
-            <div className="flex flex-col w-full bg-gray-100 ">
-                <img src={image} alt={title} className="w-full h-48 object-cover" />
-                <div className="p-6 ">
+            <motion.div
+                className="flex flex-col w-full bg-gray-100 relative overflow-hidden"
+                whileHover="hover"
+            >
+                <motion.img
+                    src={image}
+                    alt={title}
+                    className="w-full h-48 object-cover"
+                    variants={{
+                        hover: {
+                            scale: 1.1,
+                            y: -10,
+                            transition: { duration: 0.3 }
+                        }
+                    }}
+                />
+                <motion.div
+                    className="p-6 relative z-10"
+                    variants={{
+                        hover: {
+                            y: -5,
+                            transition: { duration: 0.3 }
+                        }
+                    }}
+                >
+                    {/* Rest of the content */}
                     <h3 className={`text-xl font-bold mb-2 ${textColor}`}>{title}</h3>
                     <p className={`${textColor} mb-4`}>{description}</p>
                     <div className="h-16">
                         <div className="flex flex-wrap">
                             {technologies.map((tech, index) => (
-                                <span key={index} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-200'} ${textColor} px-2 py-1 rounded-full text-sm mr-2 mb-2`}>
+                                <span key={index} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-200'} dark:text-white px-2 py-1 rounded-full text-sm mr-2 mb-2`}>
                                     {tech}
                                 </span>
                             ))}
@@ -47,12 +70,11 @@ const ProjectCard: React.FC<Project> = ({ title, description, technologies, gith
                         {liveLink && <a href={liveLink} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Live Demo</a>}
                         {playstore && <a href={playstore} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Playstore</a>}
                     </div>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </motion.div>
     );
 };
-
 const Projects: React.FC = () => {
     const { darkMode } = useDarkMode();
 

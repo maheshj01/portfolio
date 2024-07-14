@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import pastelogBanner from '../assets/img/Pastelog.png';
 import vocabhubBanner from '../assets/img/Vocabhub.jpg';
+import portfolio from '../assets/img/portfolio.png';
 import { FaGithub } from "react-icons/fa";
 interface Project {
     title: string;
@@ -95,7 +96,13 @@ const Projects: React.FC = () => {
             image: vocabhubBanner,
             playstore: "https://play.google.com/store/apps/details?id=com.vocabhub.app"
         },
-        // Add more projects here
+        {
+            title: "Portfolio",
+            description: "This portfolio website is built using React, TypeScript, and Tailwind CSS. Hosted on Vercel with CI/CD.",
+            technologies: ["React", "TypeScript", "Tailwind CSS"],
+            githubLink: "https://github.com/maheshmn/portfolio:",
+            image: portfolio,
+        },
     ];
 
     return (

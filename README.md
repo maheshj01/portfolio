@@ -3,4 +3,4 @@ My portfolio
 
 Built using ReactJs, Tailwind CSS3
 
-<img width="1275" alt="Screenshot 2024-07-08 at 23 07 51" src="https://github.com/maheshmnj/portfolio/assets/31410839/c4d5c359-1c40-47d0-b6df-5a6040b4bcac">
+<img width="1275" alt="Screenshot 2024-07-14 at 16 48 11" src="https://github.com/user-attachments/assets/c48d28c7-5f54-48ae-ba6b-78b90dde0039">

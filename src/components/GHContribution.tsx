@@ -42,7 +42,6 @@ function GHContribution({ username, className }: { username: string, className?:
     const [graphYear, setGraphYear] = React.useState<number>(currentYear);
     const fromDate = new Date(graphYear, 0, 1);
     const toDate = new Date(graphYear, 11, 31);
-
     const { loading, error, data } = useQuery(GET_USER_DATA, {
         variables: {
             login: username,
@@ -80,10 +79,15 @@ function GHContribution({ username, className }: { username: string, className?:
         );
     }
 
-    if (loading) return <p className='text-black dark:text-white'>Loading...</p>;
+    // if (loading) return <p className='text-black dark:text-white'>Loading...</p>;
     if (error) return <p className='text-red-500 dark:text-red-400'>Error: {error.message}</p>;
 
-    const weeks = data.user.contributionsCollection.contributionCalendar.weeks;
+    var weeks = [];
+    if (loading) {
+        weeks = [...Array(53)];
+    } else {
+        weeks = data.user.contributionsCollection.contributionCalendar.weeks;
+    }
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
         'Dec']
 
@@ -106,7 +110,7 @@ function GHContribution({ username, className }: { username: string, className?:
                     className='h-8 w-8 cursor-pointer' />
             </div>
             <p className={`mb-2 ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
-                Total Contributions: {data.user.contributionsCollection.contributionCalendar.totalContributions}
+                Total Contributions:  {loading ? '' : data.user.contributionsCollection.contributionCalendar.totalContributions}
             </p>
             <div className='flex items-center'>
                 <div className='flex flex-col gap-1 lg:mt-5 md:mt-4 sm: xs:mt-2 text-xs sm:text-lg'>
@@ -128,18 +132,35 @@ function GHContribution({ username, className }: { username: string, className?:
                         </div>
                         {(
                             <div className='flex gap-1 rounded-md p-2'>
-                                {weeks.map((week: any, weekIndex: number) => (
-                                    <div key={weekIndex} className='flex flex-col gap-1'>
-                                        {week.contributionDays.map((day: any, dayIndex: number) => (
-                                            <DayContribution
-                                                key={`${weekIndex}-${dayIndex}`}
-                                                day={day}
-                                                weekIndex={weekIndex}
-                                                dayIndex={dayIndex}
-                                            />
-                                        ))}
-                                    </div>
-                                ))}
+                                {!loading ? (
+                                    weeks.map((week: any, weekIndex: number) => (
+                                        <div key={weekIndex} className='flex flex-col gap-1'>
+                                            {week.contributionDays.map((day: any, dayIndex: number) => (
+                                                <DayContribution
+                                                    key={`${weekIndex}-${dayIndex}`}
+                                                    day={day}
+                                                    weekIndex={weekIndex}
+                                                    dayIndex={dayIndex}
+                                                />
+                                            ))}
+                                        </div>
+                                    ))
+                                )
+                                    : (weeks.map((_: any, weekIndex: number) => (
+                                        <div key={weekIndex} className='flex flex-col gap-1'>
+                                            {[...Array(7)].map((_, dayIndex) => (
+                                                <div
+                                                    key={`${weekIndex}-${dayIndex}`}
+                                                    className="w-2 h-2 sm:w-3 sm:h-3 xs:w-2 rounded-xs"
+                                                    style={{
+                                                        backgroundColor: styles[darkMode ? 'dark' : 'light'].zero,
+                                                    }}
+                                                />
+                                            ))}
+                                        </div>
+                                    ))
+                                    )
+                                }
                             </div>
                         )}
                     </div>

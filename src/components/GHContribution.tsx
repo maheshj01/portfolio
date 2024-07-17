@@ -2,8 +2,6 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { gql } from '@apollo/client';
 import { useDarkMode } from '../contexts/AppThemeProvider';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import { DropdownMenuButton } from './dropdown';
 import { FaGithub } from 'react-icons/fa';
 

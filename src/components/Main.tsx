@@ -9,6 +9,7 @@ import Experience from "./Experience";
 import Projects from "./Projects";
 import GHContribution from "./GHContribution";
 import { motion } from "framer-motion";
+import ContactForm from "./Contact";
 
 function Main() {
     const { darkMode } = useDarkMode();
@@ -20,7 +21,8 @@ function Main() {
             avatar: "border-slate-50",
             skillsGradient: "bg-gradient-to-b from-blue-100 to-teal-100",
             experienceGradient: "bg-gradient-to-b from-teal-100 to-blue-50",
-            projectsGradient: "bg-gradient-to-b from-blue-50 to-teal-100"
+            projectsGradient: "bg-gradient-to-b from-blue-50 to-teal-100",
+            contactGradient: "bg-gradient-to-b from-teal-100 to-blue-100"
         },
         dark: {
             text: "text-gray-100",
@@ -28,7 +30,8 @@ function Main() {
             avatar: "border-slate-600",
             skillsGradient: "bg-gradient-to-b from-gray-900 to-gray-800",
             experienceGradient: "bg-gradient-to-b from-gray-800 to-gray-700",
-            projectsGradient: "bg-gradient-to-b from-gray-800 to-gray-700"
+            projectsGradient: "bg-gradient-to-b from-gray-800 to-gray-700",
+            contactGradient: "bg-gradient-to-b from-gray-800 to-gray-900"
         }
     };
 
@@ -92,7 +95,9 @@ function Main() {
             <div id="projects" className={`${currentTheme.projectsGradient}`}>
                 <Projects />
             </div>
-            <div className="h-40" />
+            <div id="contact" className={`${currentTheme.contactGradient}`}>
+                <ContactForm />
+            </div>
         </main >
     );
 }

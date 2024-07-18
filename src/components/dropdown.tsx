@@ -12,8 +12,6 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 
 export function DropdownMenuButton({ options, selected, onClick }: { options: number[], selected: string, onClick: (value: number) => void }) {
-    const { darkMode } = useDarkMode();
-    const className = darkMode ? 'hover:bg-gray-200 hover:text-black' : 'hover:bg-gray-100'
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>

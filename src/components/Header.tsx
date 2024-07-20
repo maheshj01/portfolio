@@ -39,6 +39,12 @@ function Header({ className }: { className?: string }) {
       url: "#experience",
       target: "_self",
     },
+    {
+      id: 6,
+      name: "Contact",
+      url: "#contact",
+      target: "_self",
+    },
   ];
   const { darkMode } = useDarkMode();
   return (

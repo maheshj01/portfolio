@@ -76,6 +76,7 @@ function ContactForm() {
                         submitting: false,
                         info: { error: true, msg: "An error occurred. Please try again later." }
                     });
+                    setTimeout(() => { setStatus({ submitted: false, submitting: false, info: { error: false, msg: null } }) }, 3000);
                     console.error('Error sending email:', error);
                 });
         }
@@ -91,14 +92,24 @@ function ContactForm() {
             >
                 <h2 className={`text-4xl font-bold text-center mb-8 ${currentTheme.text}`}>Let's Connect</h2>
                 {status.info.error && (
-                    <Alert variant="danger" className="mb-4">
+                    <motion.div
+                        initial={{ y: 0, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.5, ease: "easeIn" }}
+                        className="flex justify-center bg-red-200 py-4 mb-6 rounded-sm "
+                    >
                         {status.info.msg}
-                    </Alert>
+                    </motion.div>
                 )}
                 {status.submitted ? (
-                    <div className='flex justify-center'>
+                    <motion.div
+                        initial={{ y: 0, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.5, ease: "easeIn" }}
+                        className="flex justify-center py-4 mb-6"
+                    >
                         {status.info.msg}
-                    </div>
+                    </motion.div>
                 ) : (
                     <Form ref={formRef} onSubmit={handleSubmit} className="max-w-lg mx-auto">
                         <Form.Group className="mb-4">

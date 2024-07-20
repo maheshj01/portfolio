@@ -54,10 +54,10 @@ function ContactForm() {
 
         if (formRef.current) {
             emailjs.sendForm(
-                process.env.REACT_APP_EMAIL_SERVICE_ID_KEY ?? '',
-                process.env.REACT_APP_EMAIL_TEMPLATE_KEY ?? '',
+                process.env.REACT_APP_EMAIL_SERVICE_ID ?? '',
+                process.env.REACT_APP_EMAIL_TEMPLATE ?? '',
                 formRef.current,
-                process.env.REACT_APP_EMAIL_PUBLIC_KEY
+                process.env.REACT_APP_EMAIL_PUBLIC
             )
                 .then(() => {
                     setStatus({

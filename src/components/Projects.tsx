@@ -84,7 +84,7 @@ const Projects: React.FC = () => {
             title: "Pastelog",
             description: "PasteLog is a simple, fast, and powerful pastebin. It allows you to publish Rich Text logs/Notes, and access them with a unique link.",
             technologies: ["NextJS", "TypeScript", "Tailwind CSS", "Firebase"],
-            githubLink: "https://github.com/maheshmnj/pastelog",
+            githubLink: "https://github.com/maheshj01/pastelog",
             liveLink: "https://pastelog.vercel.app",
             image: pastelogBanner
         },
@@ -92,7 +92,7 @@ const Projects: React.FC = () => {
             title: "Vocabhub",
             description: "A crowd-sourced platform for improving your Vocabulary . Users can add new words, meanings, and examples.",
             technologies: ["Flutter", "Dart", "Supabase", "PostgreSQL", "Firebase"],
-            githubLink: "https://github.com/maheshmnj/vocabhub",
+            githubLink: "https://github.com/maheshj01/vocabhub",
             image: vocabhubBanner,
             playstore: "https://play.google.com/store/apps/details?id=com.vocabhub.app"
         },

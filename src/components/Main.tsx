@@ -83,7 +83,7 @@ function Main() {
                 transition={{ duration: 1.2, ease: "easeIn" }}
                 className="md:mt-40 xs:mt-2 flex justify-center"
             >
-                <GHContribution username="maheshmnj" />
+                <GHContribution username="maheshj01" />
             </motion.div>
             <div className="h-40" />
             <div id="skills" className={`${currentTheme.skillsGradient}`}>

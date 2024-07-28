@@ -4,6 +4,8 @@ import { gql } from '@apollo/client';
 import { useDarkMode } from '../contexts/AppThemeProvider';
 import { DropdownMenuButton } from './dropdown';
 import { FaGithub } from 'react-icons/fa';
+import Tooltip from 'react-bootstrap/esm/Tooltip';
+import { OverlayTrigger } from 'react-bootstrap';
 
 const GET_USER_DATA = gql`
   query GetUserData($login: String!, $from: DateTime!, $to: DateTime!) {
@@ -103,9 +105,17 @@ function GHContribution({ username, className }: { username: string, className?:
                         selected={graphYear.toString()}
                     />
                 </div>
-                <FaGithub
-                    onClick={() => window.open(`https://github.com/${username}`, '_blank')}
-                    className='h-8 w-8 cursor-pointer' />
+                <OverlayTrigger overlay={<Tooltip id={`tip-github`}>{username}</Tooltip>}>
+                    <a
+                        href={`https://github.com/${username}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-decoration-none me-3"
+                    >
+                        <FaGithub
+                            className='h-8 w-8 cursor-pointer dark:text-white' />
+                    </a>
+                </OverlayTrigger>
             </div>
             <p className={`mb-2 ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
                 Total Contributions:  {loading ? '' : data.user.contributionsCollection.contributionCalendar.totalContributions}

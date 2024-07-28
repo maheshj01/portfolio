@@ -11,12 +11,12 @@ import {
 import { IoIosArrowDown } from "react-icons/io";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 
-export function DropdownMenuButton({ options, selected, onClick }: { options: number[], selected: string, onClick: (value: number) => void }) {
+export function DropdownMenuButton({ options, selected, onClick, className }: { className: string, options: number[], selected: string, onClick: (value: number) => void }) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <div className="flex items-center mb-1">
-                    <p className="text-blue-700 dark:text-white font-bold flex justify-center text-center text-xl"> {selected}</p> <IoIosArrowDown className="w-4 h-4 dark:text-white" />
+                    <p className={`text-blue-700 dark:text-white font-bold flex justify-center text-center ${className}`}> {selected}</p> <IoIosArrowDown className="w-4 h-4 dark:text-white" />
                 </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-2">

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import pastelogBanner from '../assets/img/Pastelog.png';
 import vocabhubBanner from '../assets/img/Vocabhub.jpg';
+import ghfreak from '../assets/img/gh-freaks.png';
 import portfolio from '../assets/img/portfolio.png';
 import { FaGithub } from "react-icons/fa";
 interface Project {
@@ -89,19 +90,27 @@ const Projects: React.FC = () => {
             image: pastelogBanner
         },
         {
+            title: "Github Freak",
+            description: "Project for Github Freaks to view their Github stats and details. This project is built using React.js, Tailwind CSS, and Github API.",
+            technologies: ["ReactJs", "TypeScript", "Tailwind CSS", "Github API"],
+            githubLink: "https://github.com/maheshj01/github-freak",
+            liveLink: "https://github-freak.vercel.app/",
+            image: ghfreak
+        },
+        {
+            title: "Portfolio",
+            description: "This portfolio website is built using React, TypeScript, and Tailwind CSS with Github. Hosted on Vercel with CI/CD.",
+            technologies: ["ReactJs", "TypeScript", "Tailwind CSS", "Github API"],
+            githubLink: "https://github.com/maheshmn/portfolio:",
+            image: portfolio,
+        },
+        {
             title: "Vocabhub",
             description: "A crowd-sourced platform for improving your Vocabulary . Users can add new words, meanings, and examples.",
             technologies: ["Flutter", "Dart", "Supabase", "PostgreSQL", "Firebase"],
             githubLink: "https://github.com/maheshj01/vocabhub",
             image: vocabhubBanner,
             playstore: "https://play.google.com/store/apps/details?id=com.vocabhub.app"
-        },
-        {
-            title: "Portfolio",
-            description: "This portfolio website is built using React, TypeScript, and Tailwind CSS with Github. Hosted on Vercel with CI/CD.",
-            technologies: ["React", "TypeScript", "Tailwind CSS", "Github API"],
-            githubLink: "https://github.com/maheshmn/portfolio:",
-            image: portfolio,
         },
     ];
 

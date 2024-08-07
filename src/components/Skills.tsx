@@ -9,7 +9,7 @@ const SkillCard = ({ skill, Icon, color }: { skill: string, Icon: IconType, colo
 
     return (
         <div className="flex flex-col items-center p-4  bg-opacity-20 rounded-lg transition-shadow duration-300">
-            <Icon className={`${color} md:h-8 md:w-8 xs:h-4 xs:w-4`} />
+            <Icon className={`${color} w-7 h-7 md:h-8 md:w-8 sm:h-10 sm:w-10`} />
             <span className={`${darkMode ? 'text-white' : 'text-black'} mt-2 text-lg font-semibold`}>{skill}</span>
         </div>
     );

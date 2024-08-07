@@ -75,7 +75,7 @@ function GHContribution({ username, className }: { username: string, className?:
         weeks.forEach((week: any) => {
             week.contributionDays.forEach((day: any) => {
                 totalContributions += day.contributionCount;
-                if (count < dayoftheYear) {
+                if (count <= dayoftheYear) {
                     if (day.contributionCount > 0) {
                         currentStreakEnd += 1;
                         if (currentStreakEnd > maxStreak) {

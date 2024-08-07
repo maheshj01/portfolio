@@ -58,7 +58,7 @@ function Experience() {
             title: "CIS Graduate Research Assistant",
             company: "University of Massachusetts Dartmouth",
             location: "Dartmouth, MA",
-            period: "Jan 2024 – Present",
+            period: "Jan 2024 – July 2024",
             description: [
 
             ]

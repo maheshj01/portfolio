@@ -2,7 +2,7 @@
 import React from "react";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import avatarImage from '../assets/img/public_profile.jpg';
-import pdf from '../assets/docs/My_Resume.pdf';
+import pdf from '../assets/docs/Mahesh\'s_Resume.pdf';
 import { Button } from "react-bootstrap";
 import Skills from "./Skills";
 import Experience from "./Experience";

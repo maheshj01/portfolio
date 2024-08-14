@@ -39,6 +39,7 @@ interface GithubContribution {
     maxStreak: number;
     currentStreak: number;
     totalContributions: number;
+    activeDays: number;
 }
 
 function GHContribution({ username, className }: { username: string, className?: string }) {
@@ -66,38 +67,51 @@ function GHContribution({ username, className }: { username: string, className?:
     }, [data]);
 
     const getContributionStats = (weeks: any) => {
-        const dayoftheYear = getCurrentDayOfYear() - 1;
-        let totalContributions = 0;
+
         let maxStreak = 0;
         let currentStreak = 0;
-        let currentStreakEnd = 0;
-        var count = 0
-        weeks.forEach((week: any) => {
-            week.contributionDays.forEach((day: any) => {
-                totalContributions += day.contributionCount;
-                if (count <= dayoftheYear) {
-                    if (day.contributionCount > 0) {
-                        currentStreakEnd += 1;
-                        if (currentStreakEnd > maxStreak) {
-                            maxStreak = currentStreakEnd;
-                        }
-                    } else {
-                        currentStreak = currentStreakEnd;
-                        currentStreakEnd = 0;
-                    }
-                }
-                count += 1;
-            });
-        });
+        let tempStreak = 0;
+        let activeDays = 0;
+        let totalContributions = 0
+
+        const allDays = weeks.flatMap((week: any) => week.contributionDays);
+
+        const currentDayOfYear = getCurrentDayOfYear() - 1;
+        const relevantDays = allDays.slice(0, currentDayOfYear + 1);
+        const reversedRelevantDays = relevantDays.reverse();
+
+        // Calculate current streak in reverse
+        for (const day of reversedRelevantDays) {
+            if (day.contributionCount > 0) {
+                tempStreak++;
+                currentStreak = tempStreak;  // Update current streak as we go
+                maxStreak = Math.max(maxStreak, tempStreak);
+            } else {
+                break;
+            }
+        }
+        tempStreak = 0
+        // Check for all-time max streak
+        for (const day of allDays) {
+            totalContributions += day.contributionCount;
+            if (day.contributionCount > 0) {
+                activeDays++;
+                tempStreak++;
+                maxStreak = Math.max(maxStreak, tempStreak);
+            } else {
+                tempStreak = 0;
+            }
+        }
         if (currentYear !== graphYear) {
             currentStreak = 0;
         }
         setContributionStats({
-            maxStreak: maxStreak,
-            currentStreak: currentStreak,
-            totalContributions: totalContributions
+            maxStreak,
+            currentStreak,
+            totalContributions,
+            activeDays
         });
-    }
+    };
 
     const styles = {
         dark: {
@@ -130,9 +144,13 @@ function GHContribution({ username, className }: { username: string, className?:
 
     function Stats({ label, value }: { label: string; value: string | undefined }) {
         return (
-            <p className={`hidden sm:block lg:text-md md:text-sm sm:text-xs ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
-                {label}: {value}
-            </p>
+            <span className={`hidden sm:block lg:text-md md:text-sm sm:text-xs ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
+
+                <span>
+                    {label}:
+                </span>
+                <span className='font-bold'>{` ${value}`}</span>
+            </span>
         );
     }
 
@@ -167,10 +185,11 @@ function GHContribution({ username, className }: { username: string, className?:
                         </div>
                         {/* <Stats label='Total Contributions' value={loading ? '' : contributionStats?.totalContributions.toString()} /> */}
                     </div>
-                    <div className='flex flex-col mx-2'>
+                    <div className='flex flex-row space-x-2 mx-3 items-center mb-1'>
                         {(currentYear === graphYear) && < Stats label='Current Streak' value={loading ? '' : contributionStats?.currentStreak.toString()} />}
 
                         <Stats label='Max Streak' value={loading ? '' : contributionStats?.maxStreak.toString()} />
+                        <Stats label='active days' value={loading ? '' : contributionStats?.activeDays.toString()} />
                         <Stats label='total Contributions' value={loading ? '' : contributionStats?.totalContributions.toString()} />
                     </div>
                 </div>

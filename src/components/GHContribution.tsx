@@ -66,7 +66,7 @@ function GHContribution({ username, className }: { username: string, className?:
     }, [data]);
 
     const getContributionStats = (weeks: any) => {
-        const dayoftheYear = getCurrentDayOfYear();
+        const dayoftheYear = getCurrentDayOfYear() - 1;
         let totalContributions = 0;
         let maxStreak = 0;
         let currentStreak = 0;

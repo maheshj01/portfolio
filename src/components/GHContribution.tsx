@@ -144,7 +144,7 @@ function GHContribution({ username, className }: { username: string, className?:
 
     function Stats({ label, value }: { label: string; value: string | undefined }) {
         return (
-            <span className={`hidden sm:block lg:text-md md:text-sm sm:text-xs ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
+            <span className={`text-center hidden sm:block lg:text-md md:text-sm sm:text-xs ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
 
                 <span>
                     {label}:

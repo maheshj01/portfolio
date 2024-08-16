@@ -76,8 +76,8 @@ function GHContribution({ username, className }: { username: string, className?:
 
         const allDays = weeks.flatMap((week: any) => week.contributionDays);
 
-        const currentDayOfYear = getCurrentDayOfYear() - 1;
-        const relevantDays = allDays.slice(0, currentDayOfYear + 1);
+        const currentDayOfYear = getCurrentDayOfYear();
+        const relevantDays = allDays.slice(0, currentDayOfYear - 1);
         const reversedRelevantDays = relevantDays.reverse();
 
         // Calculate current streak in reverse
@@ -89,6 +89,7 @@ function GHContribution({ username, className }: { username: string, className?:
             } else {
                 break;
             }
+            // console.log("currentStreak", currentStreak, day)
         }
         tempStreak = 0
         // Check for all-time max streak

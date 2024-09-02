@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCode, FaGithub, FaLinkedin, FaMedium, FaStackOverflow, FaTwitter } from "react-icons/fa";
+import { FaCode, FaGithub, FaLinkedin, FaMedium, FaStackOverflow, FaXTwitter } from "react-icons/fa6";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import Tooltip from 'react-bootstrap/Tooltip'
 import { OverlayTrigger } from "react-bootstrap";
@@ -8,9 +8,9 @@ const Footer = ({ year, className }: { year: string, className: string }) => {
   const { darkMode } = useDarkMode();
 
   const socialLinks = [
-    { name: "Github", icon: FaGithub, url: "https://github.com/maheshj01", color: "text-gray-800" },
+    { name: "Github", icon: FaGithub, url: "https://github.com/maheshj01", },
     { name: "LinkedIn", icon: FaLinkedin, url: "https://linkedin.com/in/maheshjamdade", color: "text-blue-600" },
-    { name: "Twitter", icon: FaTwitter, url: "https://twitter.com/maheshmnj", color: "text-blue-400" },
+    { name: "Twitter", icon: FaXTwitter, url: "https://twitter.com/maheshj01" },
     { name: "Leetcode", icon: FaCode, url: "https://leetcode.com/maheshjamdade/", color: "text-orange-500" },
     { name: "Stackoverflow", icon: FaStackOverflow, url: "https://stackoverflow.com/users/8253662/mahesh-jamdade", color: "text-orange-500" },
     { name: "medium", icon: FaMedium, url: "https://maheshjamdade.medium.com/", color: darkMode ? "text-white" : "text-black" }

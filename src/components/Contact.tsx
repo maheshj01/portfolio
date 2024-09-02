@@ -51,7 +51,6 @@ function ContactForm() {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus(prevStatus => ({ ...prevStatus, submitting: true }));
-
         if (formRef.current) {
             emailjs.sendForm(
                 process.env.REACT_APP_EMAIL_SERVICE_ID ?? '',
@@ -108,7 +107,7 @@ function ContactForm() {
                         transition={{ duration: 0.5, ease: "easeIn" }}
                         className="flex justify-center py-4 mb-6"
                     >
-                        {status.info.msg}
+                        <p className={`${darkMode ? 'text-white' : 'text-black'}`}>{status.info.msg}</p>
                     </motion.div>
                 ) : (
                     <Form ref={formRef} onSubmit={handleSubmit} className="max-w-lg mx-auto">

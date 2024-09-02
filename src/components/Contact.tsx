@@ -1,6 +1,6 @@
 import React, { FormEvent, useRef, useState } from 'react';
 import { useDarkMode } from "../contexts/AppThemeProvider";
-import { Button, Form, Alert } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { motion } from "framer-motion";
 import emailjs from '@emailjs/browser';
 

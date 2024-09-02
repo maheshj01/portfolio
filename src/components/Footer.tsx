@@ -3,7 +3,6 @@ import { FaCode, FaGithub, FaLinkedin, FaMedium, FaStackOverflow, FaXTwitter } f
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import Tooltip from 'react-bootstrap/Tooltip'
 import { OverlayTrigger } from "react-bootstrap";
-import { color } from "framer-motion";
 const Footer = ({ year, className }: { year: string, className: string }) => {
   const { darkMode } = useDarkMode();
 

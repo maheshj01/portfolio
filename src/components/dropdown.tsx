@@ -9,7 +9,6 @@ import {
     DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { IoIosArrowDown } from "react-icons/io";
-import { useDarkMode } from "../contexts/AppThemeProvider";
 
 export function DropdownMenuButton({ options, selected, onClick, className }: { className: string, options: number[], selected: string, onClick: (value: number) => void }) {
     return (
@@ -24,7 +23,7 @@ export function DropdownMenuButton({ options, selected, onClick, className }: { 
                     options.map((option) => {
                         return (
                             <DropdownMenuItem
-                                className={`cursor-pointer dark:text-white flex text-lg  ${selected == option.toString() ? 'bg-gray-200 hover:bg-gray-200 dark:text-black hover:dark:bg-gray-100' : 'hover:bg-gray-200'}`}
+                                className={`cursor-pointer dark:text-white flex text-lg  ${selected === option.toString() ? 'bg-gray-200 hover:bg-gray-200 dark:text-black hover:dark:bg-gray-100' : 'hover:bg-gray-200'}`}
                                 key={option}
                                 onClick={onClick.bind(null, option)}
                             > {option}</DropdownMenuItem>

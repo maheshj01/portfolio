@@ -169,7 +169,7 @@ function GHContribution({ username, className }: { username: string, className?:
 
     const days = ['Mon', 'Wed', 'Fri'];
     return (
-        <div className={`p-4 rounded-lg overflow-x-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} ${className}`}>
+        <div className={`p-4 rounded-lg overflow-x-auto ${className}`}>
             <div className='flex flex-grow justify-between '>
                 <div className='flex flex-grow'>
                     <div className='flex flex-col'>

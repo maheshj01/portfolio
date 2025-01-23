@@ -81,9 +81,10 @@ function Main() {
                 initial={{ y: 200, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: "easeIn" }}
-                className="md:mt-40 xs:mt-2 flex justify-center"
-            >
-                <GHContribution username="maheshj01" />
+                className="md:mt-40 xs:m-2 flex justify-center">
+                <GHContribution
+                    className={`${darkMode ? 'bg-gray-800' : 'bg-gradient-to-bl from-teal-100 to-blue-100'} rounded-lg shadow-md`}
+                    username="maheshj01" />
             </motion.div>
             <div className="h-40" />
             <div id="skills" className={`${currentTheme.skillsGradient}`}>

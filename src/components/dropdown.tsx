@@ -18,7 +18,7 @@ export function DropdownMenuButton({ options, selected, onClick, className }: { 
                     <p className={`text-blue-700 dark:text-white font-bold flex justify-center text-center ${className}`}> {selected}</p> <IoIosArrowDown className="w-4 h-4 dark:text-white" />
                 </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-2">
+            <DropdownMenuContent className={`w-2 bg-gradient-to-t from-blue-100 to-teal-100 dark:bg-gradient-to-t dark:from-gray-900 dark:to-gray-800`}>
                 {
                     options.map((option) => {
                         return (

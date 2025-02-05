@@ -158,7 +158,7 @@ function GHContribution({ username, className }: { username: string, className?:
     // if (loading) return <p className='text-black dark:text-white'>Loading...</p>;
     if (error) return <p className='text-red-500 dark:text-red-400'>Error: {error.message}</p>;
 
-    var weeks = [];
+    var weeks = [] as any;
     if (loading) {
         weeks = [...Array(53)];
     } else {
@@ -168,6 +168,84 @@ function GHContribution({ username, className }: { username: string, className?:
         'Dec']
 
     const days = ['Mon', 'Wed', 'Fri'];
+
+    function MonthRow() {
+        return (
+            <div className='pl-2 flex gap-8 sm:gap-10 md:gap-10 lg:gap-8'>
+                {months.map((month, index) => (
+                    <div key={index} className='w-10 text-xs sm:text-lg dark:text-white'>
+                        {month}
+                    </div>
+                ))}
+            </div>
+        );
+    }
+
+    function ContributonMatrix() {
+        const firstDayOffset = new Date(weeks[0]?.contributionDays[0]?.date).getDay();
+        return (
+            <div className='flex gap-1 rounded-md p-2'>
+                {(!loading && !error) ? (
+                    <>
+                        {/* First week with padding */}
+                        <div className='flex flex-col gap-1'>
+                            {firstDayOffset < 6 && [...Array(firstDayOffset + 1)].map((_, index) => (
+                                <DayContribution
+                                    key={`${index + 1}-${index}`}
+                                    day={{
+                                        contributionCount: 0,
+                                        color: styles[darkMode ? 'dark' : 'light'].zero,
+                                        date: '',
+                                    }}
+                                    weekIndex={0}
+                                    dayIndex={index}
+                                />
+                            ))}
+                            {weeks[0]?.contributionDays.map((day: any, dayIndex: number) => (
+                                <DayContribution
+                                    key={`0-${dayIndex}`}
+                                    day={day}
+                                    weekIndex={0}
+                                    dayIndex={dayIndex}
+                                />
+                            ))}
+                        </div>
+
+                        {/* Remaining weeks */}
+                        {weeks.slice(1).map((week: any, weekIndex: number) => (
+                            <div key={weekIndex + 1} className='flex flex-col gap-1'>
+                                {week.contributionDays.map((day: any, dayIndex: number) => (
+                                    <DayContribution
+                                        key={`${weekIndex + 1}-${dayIndex}`}
+                                        day={day}
+                                        weekIndex={weekIndex + 1}
+                                        dayIndex={dayIndex}
+                                    />
+                                ))}
+                            </div>
+                        ))}
+                    </>
+                )
+                    : (weeks.map((_: any, weekIndex: number) => (
+                        <div key={weekIndex} className='flex flex-col gap-1'>
+                            {[...Array(7)].map((_, dayIndex) => (
+                                <div
+                                    key={`${weekIndex}-${dayIndex}`}
+                                    className="w-2 h-2 sm:w-3 sm:h-3 xs:w-2 rounded-xs"
+                                    style={{
+                                        backgroundColor: styles[darkMode ? 'dark' : 'light'].zero,
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    ))
+                    )
+                }
+            </div>
+        )
+    }
+
+
     return (
         <div className={`p-4 rounded-lg overflow-x-auto ${className}`}>
             <div className='flex flex-grow justify-between '>
@@ -217,44 +295,12 @@ function GHContribution({ username, className }: { username: string, className?:
 
                 <div className='w-full overflow-x-auto'>
                     <div className='inline-block w-full pr-2'>
-                        <div className='pl-2 flex gap-8 sm:gap-10 md:gap-10 lg:gap-8'>
-                            {months.map((month, index) => (
-                                <div key={index} className='w-10 text-xs sm:text-lg dark:text-white'>
-                                    {month}
-                                </div>
-                            ))}
-                        </div>
+                        <MonthRow />
                         {(
-                            <div className='flex gap-1 rounded-md p-2'>
-                                {!loading ? (
-                                    weeks.map((week: any, weekIndex: number) => (
-                                        <div key={weekIndex} className='flex flex-col gap-1'>
-                                            {week.contributionDays.map((day: any, dayIndex: number) => (
-                                                <DayContribution
-                                                    key={`${weekIndex}-${dayIndex}`}
-                                                    day={day}
-                                                    weekIndex={weekIndex}
-                                                    dayIndex={dayIndex}
-                                                />
-                                            ))}
-                                        </div>
-                                    ))
-                                )
-                                    : (weeks.map((_: any, weekIndex: number) => (
-                                        <div key={weekIndex} className='flex flex-col gap-1'>
-                                            {[...Array(7)].map((_, dayIndex) => (
-                                                <div
-                                                    key={`${weekIndex}-${dayIndex}`}
-                                                    className="w-2 h-2 sm:w-3 sm:h-3 xs:w-2 rounded-xs"
-                                                    style={{
-                                                        backgroundColor: styles[darkMode ? 'dark' : 'light'].zero,
-                                                    }}
-                                                />
-                                            ))}
-                                        </div>
-                                    ))
-                                    )
-                                }
+                            <div className='w-full overflow-x-auto'>
+                                <div className='inline-block w-full pr-2'>
+                                    <ContributonMatrix />
+                                </div>
                             </div>
                         )}
                     </div>

@@ -134,7 +134,7 @@ function GHContribution({ username, className }: { username: string, className?:
         return (
             <div
                 key={`${weekIndex}-${dayIndex}`}
-                className="w-2 h-2 sm:w-3 sm:h-3 xs:w-2 rounded-xs"
+                className="w-2 h-2 sm:w-3 sm:h-3 xs:w-2 rounded-xs cursor-pointer"
                 style={{
                     backgroundColor: getContributionColor(day.contributionCount, day),
                 }}

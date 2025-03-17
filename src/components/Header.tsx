@@ -12,7 +12,7 @@ function Header({ className }: { className?: string }) {
     {
       id: 1,
       name: "Docs",
-      url: "https://docs.maheshjamdade.com",
+      url: "https://docs.widgetmedialabs.com",
       target: "_blank",
     },
     {

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import pastelogBanner from '../assets/img/Pastelog.png';
 import vocabhubBanner from '../assets/img/Vocabhub.jpg';
+import epochBanner from '../assets/img/epoch_frame.png';
 import ghfreak from '../assets/img/gh-freaks.png';
 import portfolio from '../assets/img/portfolio.png';
 import { FaGithub } from "react-icons/fa";
@@ -11,7 +12,7 @@ interface Project {
     title: string;
     description: string;
     technologies: string[];
-    githubLink: string;
+    githubLink?: string;
     liveLink?: string;
     image: string;
     playstore?: string;
@@ -68,7 +69,7 @@ const ProjectCard: React.FC<Project> = ({ title, description, technologies, gith
 
                     <div className='h-8' />
                     <div className="flex justify-between">
-                        <a href={githubLink} target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-600"><FaGithub /> </a>
+                        {githubLink ? <a href={githubLink} target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-600"><FaGithub /> </a> : <div />}
                         {liveLink && <a href={liveLink} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Live Demo</a>}
                         {playstore && <a href={playstore} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Playstore</a>}
                     </div>
@@ -111,6 +112,14 @@ const Projects: React.FC = () => {
             githubLink: "https://github.com/maheshj01/vocabhub",
             image: vocabhubBanner,
             playstore: "https://play.google.com/store/apps/details?id=com.vocabhub.app"
+        },
+        {
+            title: "Epoch",
+            description: "An app that helps you track important events in your life. Simply add an event, set a target date, and watch the countdown begin. 🎉",
+            technologies: ["Flutter", "Dart", "Firebase"],
+            githubLink: "",
+            image: epochBanner,
+            playstore: "https://play.google.com/store/apps/details?id=com.wml.epoch"
         },
     ];
 

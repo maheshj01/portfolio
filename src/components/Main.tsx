@@ -47,11 +47,11 @@ function Main() {
                         className="w-full h-full object-cover"
                     />
                 </div>
-                <div className="md:w-1/2 mb-8 mt-8 animate-slide-right flex flex-col items-center">
-                    <h1 className={`text-4xl md:text-6xl font-bold ${currentTheme.text}`}>
+                <div className="md:w-1/2 mb-8 mt-8 animate-slide-right flex flex-col items-center justify-center">
+                    <p className={`text-3xl md:text-4xl lg:text-5xl font-bold text-center ${currentTheme.text}`}>
                         Mahesh Jamdade
-                    </h1>
-                    <p className={`text-xl md:text-2xl mt-4 ${currentTheme.text}`}>
+                    </p>
+                    <p className={`text-xl md:text-2xl mt-4 text-center ${currentTheme.text}`}>
                         Learn | Code | Build
                     </p>
                     <div className="mt-8 flex flex-row justify-center space-x-4 sm:space-y-0 sm:space-x-4">

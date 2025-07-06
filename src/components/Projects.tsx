@@ -5,6 +5,7 @@ import { useDarkMode } from "../contexts/AppThemeProvider";
 import pastelogBanner from '../assets/img/Pastelog.png';
 import vocabhubBanner from '../assets/img/Vocabhub.jpg';
 import epochBanner from '../assets/img/epoch_frame.png';
+import omnisBanner from '../assets/img/omnis.png';
 import ghfreak from '../assets/img/gh-freaks.png';
 import portfolio from '../assets/img/portfolio.png';
 import { FaGithub } from "react-icons/fa";
@@ -16,9 +17,10 @@ interface Project {
     liveLink?: string;
     image: string;
     playstore?: string;
+    chromeStore?: string;
 }
 
-const ProjectCard: React.FC<Project> = ({ title, description, technologies, githubLink, liveLink, image, playstore }) => {
+const ProjectCard: React.FC<Project> = ({ title, description, technologies, githubLink, liveLink, image, playstore, chromeStore }) => {
     const { darkMode } = useDarkMode();
     const bgColor = darkMode ? "bg-gray-800" : "bg-white";
     const textColor = darkMode ? "text-black" : "text-gray-800";
@@ -27,8 +29,7 @@ const ProjectCard: React.FC<Project> = ({ title, description, technologies, gith
         <motion.div
             className={`${bgColor} rounded-lg shadow-lg overflow-hidden`}
             whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.3 }}
-        >
+            transition={{ duration: 0.3 }}>
             <motion.div
                 className="flex flex-col w-full bg-gray-100 relative overflow-hidden"
                 whileHover="hover"
@@ -72,6 +73,8 @@ const ProjectCard: React.FC<Project> = ({ title, description, technologies, gith
                         {githubLink ? <a href={githubLink} target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-600"><FaGithub /> </a> : <div />}
                         {liveLink && <a href={liveLink} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Live Demo</a>}
                         {playstore && <a href={playstore} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Playstore</a>}
+                        {chromeStore && <a href={chromeStore} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">ChromeStore</a>}
+
                     </div>
                 </motion.div>
             </motion.div>
@@ -82,6 +85,22 @@ const Projects: React.FC = () => {
     const { darkMode } = useDarkMode();
 
     const projects: Project[] = [
+        {
+            title: "Epoch",
+            description: "An app that helps you track important events in your life. Simply add an event, set a target date, and watch the countdown begin. 🎉",
+            technologies: ["Flutter", "Dart", "Firebase"],
+            githubLink: "",
+            image: epochBanner,
+            playstore: "https://play.google.com/store/apps/details?id=com.wml.epoch"
+        },
+        {
+            title: "Omnis AI",
+            description: "A Chrome plugin to give you AI capabilities on any input on the internet. It can help you fill any input. All you have to do is ask with a prompt",
+            technologies: ["Typescript", "Webpack", "React", "Tailwind CSS"],
+            githubLink: "",
+            image: omnisBanner,
+            chromeStore: "https://chromewebstore.google.com/detail/omnis/jnlmmhniofekbnlhejdaflloeifkpfhh?authuser=0&hl=en"
+        },
         {
             title: "Pastelog",
             description: "PasteLog is a simple, fast, and powerful pastebin. It allows you to publish Rich Text logs/Notes, and access them with a unique link.",
@@ -112,14 +131,6 @@ const Projects: React.FC = () => {
             githubLink: "https://github.com/maheshj01/vocabhub",
             image: vocabhubBanner,
             playstore: "https://play.google.com/store/apps/details?id=com.vocabhub.app"
-        },
-        {
-            title: "Epoch",
-            description: "An app that helps you track important events in your life. Simply add an event, set a target date, and watch the countdown begin. 🎉",
-            technologies: ["Flutter", "Dart", "Firebase"],
-            githubLink: "",
-            image: epochBanner,
-            playstore: "https://play.google.com/store/apps/details?id=com.wml.epoch"
         },
     ];
 

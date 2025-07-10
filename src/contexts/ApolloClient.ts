@@ -6,6 +6,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
+    // this is a classic token from github with user scope checked
     const token = process.env.REACT_APP_GITHUB_TOKEN;
     return {
         headers: {

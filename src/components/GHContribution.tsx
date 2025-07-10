@@ -156,7 +156,7 @@ function GHContribution({ username, className }: { username: string, className?:
     }
 
     // if (loading) return <p className='text-black dark:text-white'>Loading...</p>;
-    if (error) return <p className='text-red-500 dark:text-red-400'>Error: {error.message}</p>;
+    if (error && !loading) return <div />
 
     var weeks = [] as any;
     if (loading) {

@@ -26,10 +26,11 @@ const ProjectCard: React.FC<Project> = ({ title, description, technologies, gith
     const textColor = darkMode ? "text-black" : "text-gray-800";
 
     return (
-        <motion.div
-            className={`${bgColor} rounded-lg shadow-lg overflow-hidden`}
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.3 }}>
+        <div
+            className={`${bgColor} rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-all duration-300`}
+        // whileHover={{ scale: 1.03 }}
+        // transition={{ duration: 0.3 }}
+        >
             <motion.div
                 className="flex flex-col w-full bg-gray-100 relative overflow-hidden"
                 whileHover="hover"
@@ -78,7 +79,7 @@ const ProjectCard: React.FC<Project> = ({ title, description, technologies, gith
                     </div>
                 </motion.div>
             </motion.div>
-        </motion.div>
+        </div>
     );
 };
 const Projects: React.FC = () => {

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import pastelogBanner from '../assets/img/Pastelog.png';
 import vocabhubBanner from '../assets/img/Vocabhub.jpg';
+import furdleBanner from '../assets/img/furdle.jpeg';
 import epochBanner from '../assets/img/epoch_frame.png';
 import omnisBanner from '../assets/img/omnis.png';
 import ghfreak from '../assets/img/gh-freaks.png';
@@ -132,6 +133,14 @@ const Projects: React.FC = () => {
             githubLink: "https://github.com/maheshj01/vocabhub",
             image: vocabhubBanner,
             playstore: "https://play.google.com/store/apps/details?id=com.vocabhub.app"
+        },
+        {
+            title: "Furdle",
+            description: "A word guessing game inspired by Wordle. Users can guess words and get feedback on their guesses.",
+            technologies: ["Flutter", "Firebase", "Cloud Scheduler"],
+            githubLink: "https://github.com/maheshj01/furdle",
+            image: furdleBanner,
+            playstore: "https://play.google.com/store/apps/details?id=com.wml.furdle"
         },
     ];
 

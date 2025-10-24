@@ -54,7 +54,7 @@ function Main() {
                     <p className={`text-xl md:text-2xl mt-4 text-center ${currentTheme.text}`}>
                         Learn | Code | Build
                     </p>
-                    <div className="mt-8 flex flex-row justify-center space-x-4 sm:space-y-0 sm:space-x-4">
+                    {/* <div className="mt-8 flex flex-row justify-center space-x-4 sm:space-y-0 sm:space-x-4">
                         <Button
                             href={pdf}
                             target="_blank"

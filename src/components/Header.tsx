@@ -11,8 +11,8 @@ function Header({ className }: { className?: string }) {
   const navbarItems = [
     {
       id: 1,
-      name: "Docs",
-      url: "https://docs.widgetmedialabs.com",
+      name: "Blog",
+      url: "https://blog.maheshjamdade.com",
       target: "_blank",
     },
     {

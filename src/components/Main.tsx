@@ -74,7 +74,7 @@ function Main() {
                         >
                             Blog
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
             </section>
             <motion.div

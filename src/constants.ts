@@ -71,6 +71,7 @@ export const projects: Project[] = [
         technologies: ["Flutter", "Firebase", "Cloud Scheduler"],
         githubLink: "https://github.com/maheshj01/furdle",
         image: furdleBanner,
-        playstore: "https://play.google.com/store/apps/details?id=com.wml.furdle"
+        playstore: "https://play.google.com/store/apps/details?id=com.wml.furdle",
+        liveLink: "https://furdle.web.app"
     },
 ];

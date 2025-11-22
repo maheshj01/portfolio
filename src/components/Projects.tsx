@@ -2,13 +2,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useDarkMode } from "../contexts/AppThemeProvider";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaLink, FaGooglePlay, FaChrome } from "react-icons/fa6";
 import { Project, projects } from "../constants";
+import { Tooltip } from "react-bootstrap";
 
 const ProjectCard: React.FC<Project> = ({ title, description, technologies, githubLink, liveLink, image, playstore, chromeStore }) => {
     const { darkMode } = useDarkMode();
     const bgColor = darkMode ? "bg-gray-800" : "bg-white";
-    const textColor = darkMode ? "text-black" : "text-gray-800";
+    const textColor = darkMode ? "text-white" : "text-gray-800";
 
     return (
         <div
@@ -17,7 +18,7 @@ const ProjectCard: React.FC<Project> = ({ title, description, technologies, gith
         // transition={{ duration: 0.3 }}
         >
             <motion.div
-                className="flex flex-col w-full bg-gray-100 relative overflow-hidden"
+                className="flex flex-col w-full bg-gray-100 dark:bg-gray-700 relative overflow-hidden"
                 whileHover="hover"
             >
                 <motion.img
@@ -56,17 +57,36 @@ const ProjectCard: React.FC<Project> = ({ title, description, technologies, gith
 
                     <div className='h-8' />
                     <div className="flex justify-between">
-                        {githubLink ? <a href={githubLink} target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-600"><FaGithub /> </a> : <div />}
-                        {liveLink && <a href={liveLink} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Live Demo</a>}
-                        {playstore && <a href={playstore} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">Playstore</a>}
-                        {chromeStore && <a href={chromeStore} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600">ChromeStore</a>}
-
+                        {githubLink ? <IconButton
+                            label="Github"
+                            icon={<FaGithub size={24} color={darkMode ? "white" : "blue"} />} href={githubLink} /> : <div />}
+                        <div className="flex flex-row gap-4">
+                            {liveLink && <IconButton
+                                label="Live Demo"
+                                icon={<FaLink size={24} color={darkMode ? "white" : "blue"} />} href={liveLink} />}
+                            {playstore && <IconButton
+                                label="Playstore"
+                                icon={<FaGooglePlay size={24} color={darkMode ? "white" : "blue"} />} href={playstore} />}
+                            {chromeStore && <IconButton
+                                label="ChromeStore"
+                                icon={<FaChrome size={24} color={darkMode ? "white" : "blue"} />} href={chromeStore} />}
+                        </div>
                     </div>
                 </motion.div>
             </motion.div>
         </div>
     );
 };
+
+
+const IconButton = ({ icon, href, label }: { icon: React.ReactNode, href: string | undefined, label: string }) => {
+    return (
+        <a title={label} href={href} target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-blue-600 dark:text-white">
+            {icon}
+        </a>
+    );
+};
+
 const Projects: React.FC = () => {
     const { darkMode } = useDarkMode();
 

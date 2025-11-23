@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCode, FaGithub, FaLinkedin, FaMedium, FaStackOverflow, FaXTwitter } from "react-icons/fa6";
+import { FaCode, FaGithub, FaInstagram, FaLinkedin, FaMedium, FaStackOverflow, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import Tooltip from 'react-bootstrap/Tooltip'
 import { OverlayTrigger } from "react-bootstrap";
@@ -12,7 +12,9 @@ const Footer = ({ year, className }: { year: string, className: string }) => {
     { name: "Twitter", icon: FaXTwitter, url: "https://twitter.com/maheshj01" },
     { name: "Leetcode", icon: FaCode, url: "https://leetcode.com/maheshjamdade/", color: "text-orange-500" },
     { name: "Stackoverflow", icon: FaStackOverflow, url: "https://stackoverflow.com/users/8253662/mahesh-jamdade", color: "text-orange-500" },
-    { name: "medium", icon: FaMedium, url: "https://maheshjamdade.medium.com/", color: darkMode ? "text-white" : "text-black" }
+    { name: "medium", icon: FaMedium, url: "https://maheshjamdade.medium.com/", color: darkMode ? "text-white" : "text-black" },
+    { name: "Instagram", icon: FaInstagram, url: "https://www.instagram.com/maheshj01/", color: darkMode ? "text-white" : "text-pink-500" },
+    { name: "Youtube", icon: FaYoutube, url: "https://www.youtube.com/@maheshj01", color: darkMode ? "text-white" : "text-red-500" }
   ];
 
   return (

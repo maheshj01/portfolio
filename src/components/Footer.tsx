@@ -8,10 +8,10 @@ const Footer = ({ year, className }: { year: string, className: string }) => {
 
   const socialLinks = [
     { name: "Github", icon: FaGithub, url: "https://github.com/maheshj01", },
-    { name: "LinkedIn", icon: FaLinkedin, url: "https://linkedin.com/in/maheshjamdade", color: "text-blue-600" },
+    { name: "LinkedIn", icon: FaLinkedin, url: "https://linkedin.com/in/maheshjamdade", color: darkMode ? "text-white" : "text-blue-600" },
     { name: "Twitter", icon: FaXTwitter, url: "https://twitter.com/maheshj01" },
-    { name: "Leetcode", icon: FaCode, url: "https://leetcode.com/maheshjamdade/", color: "text-orange-500" },
-    { name: "Stackoverflow", icon: FaStackOverflow, url: "https://stackoverflow.com/users/8253662/mahesh-jamdade", color: "text-orange-500" },
+    { name: "Leetcode", icon: FaCode, url: "https://leetcode.com/maheshjamdade/", color: darkMode ? "text-white" : "text-orange-500" },
+    { name: "Stackoverflow", icon: FaStackOverflow, url: "https://stackoverflow.com/users/8253662/mahesh-jamdade", color: darkMode ? "text-white" : "text-orange-500" },
     { name: "medium", icon: FaMedium, url: "https://maheshjamdade.medium.com/", color: darkMode ? "text-white" : "text-black" },
     { name: "Instagram", icon: FaInstagram, url: "https://www.instagram.com/maheshj01/", color: darkMode ? "text-white" : "text-pink-500" },
     { name: "Youtube", icon: FaYoutube, url: "https://www.youtube.com/@maheshj01", color: darkMode ? "text-white" : "text-red-500" }

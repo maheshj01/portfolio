@@ -8,6 +8,7 @@ import { AppThemeProvider } from "./contexts/AppThemeProvider";
 import { ApolloProvider } from '@apollo/client';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { client } from "./contexts/ApolloClient";
+import { MotionConfig } from "framer-motion";
 import ErrorRoute from "./routes/error";
 import PrivacyPolicy from "./routes/vocabhub/privacy";
 
@@ -50,7 +51,9 @@ root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <AppThemeProvider>
-        <RouterProvider router={router} />
+        <MotionConfig reducedMotion="user">
+          <RouterProvider router={router} />
+        </MotionConfig>
       </AppThemeProvider>
     </ApolloProvider>
   </React.StrictMode>

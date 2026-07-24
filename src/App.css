@@ -141,3 +141,12 @@ footer a {
 footer a:hover {
   opacity: 0.7;
 }
+
+/* Scrollable Experience list — hide the scrollbar but keep scroll behaviour */
+.experience-scroll {
+  -ms-overflow-style: none;   /* IE and Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+.experience-scroll::-webkit-scrollbar {
+  display: none;              /* Chrome, Safari, Opera */
+}

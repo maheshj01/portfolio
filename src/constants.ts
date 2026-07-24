@@ -54,7 +54,7 @@ export const projects: Project[] = [
         title: "Portfolio",
         description: "This portfolio website is built using React, TypeScript, and Tailwind CSS with Github. Hosted on Vercel with CI/CD.",
         technologies: ["ReactJs", "TypeScript", "Tailwind CSS", "Github API"],
-        githubLink: "https://github.com/maheshmn/portfolio:",
+        githubLink: "https://github.com/maheshj01/portfolio",
         image: portfolio,
     },
     {

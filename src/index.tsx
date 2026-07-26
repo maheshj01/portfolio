@@ -18,8 +18,6 @@ const root = ReactDOM.createRoot(
 
 
 const Layout = () => {
-  const date = new Date();
-  // const isLastWeekOfYear = date.getMonth() === 11 && date.getDate() >= 24;
   return (
     <div >
       <Outlet />

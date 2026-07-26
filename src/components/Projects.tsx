@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useDarkMode } from "../contexts/AppThemeProvider";
 import { FaGithub, FaLink, FaGooglePlay, FaChrome } from "react-icons/fa6";
 import { Project, projects } from "../constants";
-import { Tooltip } from "react-bootstrap";
 
 const ProjectCard: React.FC<Project> = ({ title, description, technologies, githubLink, liveLink, image, playstore, chromeStore }) => {
     const { darkMode } = useDarkMode();

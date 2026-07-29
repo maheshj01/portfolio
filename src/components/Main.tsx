@@ -102,9 +102,6 @@ function Hero() {
             </div>
           </div>
 
-          <p className="mt-8 font-mono text-[0.8rem] text-[var(--muted)]">
-            Currently @ iVUEIT LLC · Columbus, OH · Learn → Code → Build
-          </p>
         </motion.div>
       </div>
     </section>

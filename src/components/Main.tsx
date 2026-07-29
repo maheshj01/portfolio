@@ -1,6 +1,6 @@
 // src/components/Main.tsx
 import React from "react";
-import avatarImage from "../assets/img/public_profile.jpg";
+import avatarImage from "../assets/img/Linkedin.png";
 import Skills from "./Skills";
 import Experience from "./Experience";
 import Projects from "./Projects";

@@ -9,9 +9,6 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    borderWidth: {
-      DEFAULT: '1px',
-    },
     container: {
       center: true,
       padding: "2rem",
@@ -62,17 +59,20 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      }
-    },
-    borderRadius: {
-      lg: `var(--radius)`,
-      md: `calc(var(--radius) - 2px)`,
-      sm: "calc(var(--radius) - 4px)",
-      xs: "2px",
-      full: "9999px",
+      },
+      // Kept in `extend` so Tailwind's default radii (rounded, xl, 2xl, 3xl)
+      // stay available; these just override lg/md/sm for shadcn + add xs.
+      borderRadius: {
+        lg: `var(--radius)`,
+        md: `calc(var(--radius) - 2px)`,
+        sm: "calc(var(--radius) - 4px)",
+        xs: "2px",
+      },
     },
     fontFamily: {
-      sans: ["var(--font-sans)", ...fontFamily.sans],
+      sans: ["var(--font-body)", ...fontFamily.sans],
+      display: ["var(--font-display)", ...fontFamily.sans],
+      mono: ["var(--font-mono)", ...fontFamily.mono],
     },
     keyframes: {
       "accordion-down": {

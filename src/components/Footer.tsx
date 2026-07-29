@@ -1,55 +1,51 @@
 import React from "react";
-import { FaCode, FaGithub, FaInstagram, FaLinkedin, FaMedium, FaStackOverflow, FaXTwitter, FaYoutube } from "react-icons/fa6";
-import { useDarkMode } from "../contexts/AppThemeProvider";
-import Tooltip from 'react-bootstrap/Tooltip'
-import { OverlayTrigger } from "react-bootstrap";
-const Footer = ({ year, className }: { year: string, className: string }) => {
-  const { darkMode } = useDarkMode();
+import {
+  FaCode, FaGithub, FaInstagram, FaLinkedin, FaMedium,
+  FaStackOverflow, FaXTwitter, FaYoutube,
+} from "react-icons/fa6";
 
-  const socialLinks = [
-    { name: "Github", icon: FaGithub, url: "https://github.com/maheshj01", },
-    { name: "LinkedIn", icon: FaLinkedin, url: "https://linkedin.com/in/maheshjamdade", color: darkMode ? "text-white" : "text-blue-600" },
-    { name: "Twitter", icon: FaXTwitter, url: "https://twitter.com/maheshj01" },
-    { name: "Leetcode", icon: FaCode, url: "https://leetcode.com/maheshjamdade/", color: darkMode ? "text-white" : "text-orange-500" },
-    { name: "Stackoverflow", icon: FaStackOverflow, url: "https://stackoverflow.com/users/8253662/mahesh-jamdade", color: darkMode ? "text-white" : "text-orange-500" },
-    { name: "medium", icon: FaMedium, url: "https://maheshjamdade.medium.com/", color: darkMode ? "text-white" : "text-black" },
-    { name: "Instagram", icon: FaInstagram, url: "https://www.instagram.com/maheshj01/", color: darkMode ? "text-white" : "text-pink-500" },
-    { name: "Youtube", icon: FaYoutube, url: "https://www.youtube.com/@maheshj01", color: darkMode ? "text-white" : "text-red-500" }
-  ];
+const socialLinks = [
+  { name: "GitHub", icon: FaGithub, url: "https://github.com/maheshj01" },
+  { name: "LinkedIn", icon: FaLinkedin, url: "https://linkedin.com/in/maheshjamdade" },
+  { name: "Twitter / X", icon: FaXTwitter, url: "https://twitter.com/maheshj01" },
+  { name: "LeetCode", icon: FaCode, url: "https://leetcode.com/maheshjamdade/" },
+  { name: "Stack Overflow", icon: FaStackOverflow, url: "https://stackoverflow.com/users/8253662/mahesh-jamdade" },
+  { name: "Medium", icon: FaMedium, url: "https://maheshjamdade.medium.com/" },
+  { name: "Instagram", icon: FaInstagram, url: "https://www.instagram.com/maheshj01/" },
+  { name: "YouTube", icon: FaYoutube, url: "https://www.youtube.com/@maheshj01" },
+];
 
+const Footer = ({ year }: { year: string }) => {
   return (
-    <footer className={`py-6 ${darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-800"} ${className}`}>
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0 text-center md:text-left">
-            <h5 className="text-xl font-semibold">Mahesh Jamdade</h5>
-            <p className="text-sm">Full Stack Developer</p>
-          </div>
-          <div className="mb-4 md:mb-0 text-center">
-            <p className="text-sm">&copy; {year} All rights reserved</p>
-          </div>
-          <div className="flex justify-center md:justify-end">
-            {socialLinks.map((social, index) => {
-              const Icon = social.icon;
-              return (
-                <OverlayTrigger overlay={<Tooltip id={`tip-${index}`}>{social.name}</Tooltip>}>
-                  <a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-decoration-none me-3"
-                  >
-                    <Icon size={24} className={social.color} />
-                  </a>
-                </OverlayTrigger>
-              );
-            })
-            }
-          </div>
+    <footer className="border-t border-[var(--rule)] bg-[var(--page-bg)] py-8">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 md:flex-row md:justify-between md:gap-4">
+        <div className="text-center md:text-left">
+          <p className="flex items-center justify-center gap-1.5 font-display text-base font-semibold text-[var(--ink)] md:justify-start">
+            <span className="font-mono text-[var(--brand)]">~/</span>
+            Mahesh Jamdade
+          </p>
+          <p className="mt-0.5 font-mono text-xs text-[var(--muted)]">
+            Full-Stack Engineer · © {year}
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-1">
+          {socialLinks.map(({ name, icon: Icon, url }) => (
+            <a
+              key={name}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={name}
+              title={name}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-[var(--ink-soft)] transition-colors hover:text-[var(--brand)]"
+            >
+              <Icon className="h-[18px] w-[18px]" />
+            </a>
+          ))}
         </div>
       </div>
-    </footer >
+    </footer>
   );
 };
 

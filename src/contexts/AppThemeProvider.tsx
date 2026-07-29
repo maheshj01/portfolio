@@ -1,4 +1,4 @@
-// src/contexts/DarkModeContext.tsx
+// src/contexts/AppThemeProvider.tsx
 import React, { createContext, useContext, ReactNode, useState } from "react";
 
 interface DarkModeContextProps {
@@ -10,18 +10,30 @@ const DarkModeContext = createContext<DarkModeContextProps | undefined>(
   undefined
 );
 
+/** Read the theme decided by the pre-paint script in index.html. */
+function getInitialDarkMode(): boolean {
+  if (typeof document === "undefined") return false;
+  return document.documentElement.classList.contains("dark");
+}
+
 export const AppThemeProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(getInitialDarkMode);
 
   const toggleDarkMode = () => {
     setDarkMode((prevDarkMode) => {
       const newDarkMode = !prevDarkMode;
+      const root = document.documentElement;
       if (newDarkMode) {
-        document.documentElement.classList.add('dark');
+        root.classList.add("dark");
       } else {
-        document.documentElement.classList.remove('dark');
+        root.classList.remove("dark");
+      }
+      try {
+        localStorage.setItem("theme", newDarkMode ? "dark" : "light");
+      } catch (e) {
+        /* ignore storage errors */
       }
       return newDarkMode;
     });

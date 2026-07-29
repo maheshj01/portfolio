@@ -1,31 +1,25 @@
-// app/components/ThemeSwitcher.tsx
-"use client";
-
-import { Button } from "react-bootstrap";
-import { useDarkMode } from "../contexts/AppThemeProvider";
 import { useEffect, useState } from "react";
-import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
-export function ThemeSwitcher() {
-    const [mounted, setMounted] = useState(false)
-    const { darkMode, toggleDarkMode } = useDarkMode();
-    useEffect(() => {
-        setMounted(true)
-    }, [])
+import { useDarkMode } from "../contexts/AppThemeProvider";
+import { Moon, Sun } from "lucide-react";
 
-    if (!mounted) return null
-    var iconClass = '';
-    if (darkMode) {
-        iconClass = 'text-white size-8'
-    } else {
-        iconClass = 'size-8 text-black'
-    }
-    return (
-        <div>
-            <Button aria-label="Light Mode" className='bg-transparent border-none rounded-full p-2'
-                onClick={toggleDarkMode}
-                size='lg'>
-                {darkMode ? <SunIcon className={iconClass} /> : <MoonIcon className={iconClass} />}
-            </Button>
-        </div>
-    )
-};
+export function ThemeSwitcher() {
+  const [mounted, setMounted] = useState(false);
+  const { darkMode, toggleDarkMode } = useDarkMode();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  return (
+    <button
+      type="button"
+      aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+      onClick={toggleDarkMode}
+      className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-[var(--ink)] transition-colors hover:text-[var(--brand)]"
+    >
+      {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+    </button>
+  );
+}

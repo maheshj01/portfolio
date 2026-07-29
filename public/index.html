@@ -29,6 +29,17 @@
   <meta name="twitter:image" content="https://maheshjamdade.com/android-chrome-512x512.png" />
   <link rel="canonical" href="https://maheshjamdade.com" />
   <title>Mahesh's Portfolio</title>
+  <script>
+    // Set the theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var dark = stored ? stored === 'dark' : prefersDark;
+        if (dark) document.documentElement.classList.add('dark');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body>

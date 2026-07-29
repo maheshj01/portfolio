@@ -14,16 +14,18 @@ export function DropdownMenuButton({ options, selected, onClick, className }: { 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <div className="flex items-center mb-1">
-                    <p className={`text-blue-700 dark:text-white font-bold flex justify-center text-center ${className}`}> {selected}</p> <IoIosArrowDown className="w-4 h-4 dark:text-white" />
-                </div>
+                <button type="button" className="mb-1 flex cursor-pointer items-center gap-1 text-[var(--brand)]">
+                    <span className={`font-mono font-semibold ${className}`}>{selected}</span>
+                    <IoIosArrowDown className="h-4 w-4" />
+                </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className={`w-2 bg-gradient-to-t from-blue-100 to-teal-100 dark:bg-gradient-to-t dark:from-gray-900 dark:to-gray-800`}>
+            <DropdownMenuContent className="min-w-[5rem] border border-[var(--rule)] bg-[var(--surface)]">
                 {
                     options.map((option) => {
+                        const isSelected = selected === option.toString();
                         return (
                             <DropdownMenuItem
-                                className={`cursor-pointer dark:text-white flex text-lg  ${selected === option.toString() ? 'bg-gray-200 hover:bg-gray-200 dark:text-black hover:dark:bg-gray-100' : 'hover:bg-gray-200'}`}
+                                className={`cursor-pointer font-mono text-[var(--ink)] focus:bg-[var(--surface-2)] ${isSelected ? 'bg-[var(--brand-tint)] text-[var(--brand)]' : ''}`}
                                 key={option}
                                 onClick={onClick.bind(null, option)}
                             > {option}</DropdownMenuItem>

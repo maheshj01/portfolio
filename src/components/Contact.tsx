@@ -1,166 +1,144 @@
-import React, { FormEvent, useRef, useState } from 'react';
-import { useDarkMode } from "../contexts/AppThemeProvider";
-import { Button, Form } from "react-bootstrap";
+import React, { FormEvent, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 interface FormData {
-    name: string;
-    email: string;
-    message: string;
+  name: string;
+  email: string;
+  message: string;
 }
 
 interface Status {
-    submitted: boolean;
-    submitting: boolean;
-    info: { error: boolean; msg: string | null };
+  submitted: boolean;
+  submitting: boolean;
+  info: { error: boolean; msg: string | null };
 }
 
+const inputClass =
+  "w-full rounded-lg border border-[var(--rule-strong)] bg-[var(--surface)] px-3.5 py-2.5 text-[var(--ink)] placeholder:text-[var(--muted)] outline-none transition-colors focus:border-[var(--brand)] disabled:opacity-60";
+
 function ContactForm() {
-    const { darkMode } = useDarkMode();
-    const formRef = useRef<HTMLFormElement>(null);
-    const [formData, setFormData] = useState<FormData>({
-        name: '',
-        email: '',
-        message: ''
-    });
+  const formRef = useRef<HTMLFormElement>(null);
+  const [formData, setFormData] = useState<FormData>({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<Status>({
+    submitted: false,
+    submitting: false,
+    info: { error: false, msg: null },
+  });
 
-    const [status, setStatus] = useState<Status>({
-        submitted: false,
-        submitting: false,
-        info: { error: false, msg: null }
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const themeStyles = {
-        light: {
-            text: "text-gray-800",
-            input: "bg-white border-gray-300 focus:border-blue-600 focus:ring-2",
-        },
-        dark: {
-            text: "text-gray-100",
-            input: "bg-gray-700 border-gray-600 placeholder-gray-100 focus:bg-gray-600 focus:text-white focus:border-gray-100",
-        }
-    };
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus((prev) => ({ ...prev, submitting: true }));
+    if (formRef.current) {
+      emailjs
+        .sendForm(
+          process.env.REACT_APP_EMAIL_SERVICE_ID ?? "",
+          process.env.REACT_APP_EMAIL_TEMPLATE ?? "",
+          formRef.current,
+          process.env.REACT_APP_EMAIL_PUBLIC
+        )
+        .then(
+          () => {
+            setStatus({
+              submitted: true,
+              submitting: false,
+              info: { error: false, msg: "Thank you, your message has been sent." },
+            });
+            setFormData({ name: "", email: "", message: "" });
+          },
+          (error) => {
+            setStatus({
+              submitted: false,
+              submitting: false,
+              info: { error: true, msg: "An error occurred. Please try again later." },
+            });
+            setTimeout(
+              () => setStatus({ submitted: false, submitting: false, info: { error: false, msg: null } }),
+              3000
+            );
+            console.error("Error sending email:", error);
+          }
+        );
+    }
+  };
 
-    const currentTheme = darkMode ? themeStyles.dark : themeStyles.light;
+  return (
+    <section id="contact" className="section-shell py-16">
+      <div className="section-head">
+        <h2 className="section-title text-2xl md:text-3xl">Let&rsquo;s connect</h2>
+        <span className="section-rule" aria-hidden="true" />
+        <span className="font-mono text-xs text-[var(--muted)]">say hello</span>
+      </div>
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-xl"
+      >
+        <p className="mb-6 text-[var(--ink-soft)]">
+          Have a project, role, or idea in mind? Drop a note and I&rsquo;ll get back to you.
+        </p>
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setStatus(prevStatus => ({ ...prevStatus, submitting: true }));
-        if (formRef.current) {
-            emailjs.sendForm(
-                process.env.REACT_APP_EMAIL_SERVICE_ID ?? '',
-                process.env.REACT_APP_EMAIL_TEMPLATE ?? '',
-                formRef.current,
-                process.env.REACT_APP_EMAIL_PUBLIC
-            )
-                .then(() => {
-                    setStatus({
-                        submitted: true,
-                        submitting: false,
-                        info: { error: false, msg: "Thank you, your message has been sent." }
-                    });
-                    setFormData({
-                        name: '',
-                        email: '',
-                        message: ''
-                    });
-                }, (error) => {
-                    setStatus({
-                        submitted: false,
-                        submitting: false,
-                        info: { error: true, msg: "An error occurred. Please try again later." }
-                    });
-                    setTimeout(() => { setStatus({ submitted: false, submitting: false, info: { error: false, msg: null } }) }, 3000);
-                    console.error('Error sending email:', error);
-                });
-        }
-    };
+        {status.info.error && (
+          <div className="mb-5 rounded-lg border border-[var(--rule-strong)] bg-[var(--surface-2)] px-4 py-3 text-sm text-[var(--ink)]">
+            {status.info.msg}
+          </div>
+        )}
 
-    return (
-        <section id="contact" className={`py-20`}>
-            <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="container mx-auto px-4"
+        {status.submitted ? (
+          <div className="rounded-lg border border-[var(--brand)] bg-[var(--brand-tint)] px-4 py-3 text-sm font-medium text-[var(--brand)]">
+            {status.info.msg}
+          </div>
+        ) : (
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your name"
+              value={formData.name}
+              onChange={handleChange}
+              disabled={status.submitting}
+              className={inputClass}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your email"
+              value={formData.email}
+              onChange={handleChange}
+              disabled={status.submitting}
+              className={inputClass}
+              required
+            />
+            <textarea
+              name="message"
+              placeholder="Your message"
+              value={formData.message}
+              onChange={handleChange}
+              disabled={status.submitting}
+              rows={5}
+              className={`${inputClass} resize-y`}
+              required
+            />
+            <button
+              type="submit"
+              disabled={status.submitting}
+              className="inline-flex items-center justify-center rounded-full bg-[var(--brand)] px-6 py-2.5 font-semibold text-[var(--brand-contrast)] transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-70"
             >
-                <h2 className={`text-4xl font-bold text-center mb-8 ${currentTheme.text}`}>Let's Connect</h2>
-                {status.info.error && (
-                    <motion.div
-                        initial={{ y: 0, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.5, ease: "easeIn" }}
-                        className="flex justify-center bg-red-200 py-4 mb-6 rounded-sm "
-                    >
-                        {status.info.msg}
-                    </motion.div>
-                )}
-                {status.submitted ? (
-                    <motion.div
-                        initial={{ y: 0, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.5, ease: "easeIn" }}
-                        className="flex justify-center py-4 mb-6"
-                    >
-                        <p className={`${darkMode ? 'text-white' : 'text-black'}`}>{status.info.msg}</p>
-                    </motion.div>
-                ) : (
-                    <Form ref={formRef} onSubmit={handleSubmit} className="max-w-lg mx-auto">
-                        <Form.Group className="mb-4">
-                            <Form.Control
-                                type="text"
-                                name="name"
-                                placeholder="Your Name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                disabled={status.submitting}
-                                className={`w-full p-2 rounded-md ${currentTheme.input} ${currentTheme.text}`}
-                                required
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-4">
-                            <Form.Control
-                                type="email"
-                                name="email"
-                                placeholder="Your Email"
-                                value={formData.email}
-                                disabled={status.submitting}
-                                onChange={handleChange}
-                                className={`w-full p-2 rounded-md ${currentTheme.input} ${currentTheme.text}`}
-                                required
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-4">
-                            <Form.Control
-                                as="textarea"
-                                name="message"
-                                placeholder="Your Message"
-                                value={formData.message}
-                                disabled={status.submitting}
-                                onChange={handleChange}
-                                className={`w-full p-2 rounded-md ${currentTheme.input} ${currentTheme.text}`}
-                                rows={5}
-                                required
-                            />
-                        </Form.Group>
-                        <Button
-                            type="submit"
-                            variant="primary"
-                            disabled={status.submitting}
-                            className="w-full py-2 rounded-md font-semibold transition duration-300 ease-in-out transform hover:scale-105"
-                        >
-                            {status.submitting ? 'Sending...' : 'Send Message'}
-                        </Button>
-                    </Form>
-                )}
-            </motion.div>
-        </section>
-    );
+              {status.submitting ? "Sending…" : "Send message"}
+            </button>
+          </form>
+        )}
+      </motion.div>
+    </section>
+  );
 }
 
 export default ContactForm;

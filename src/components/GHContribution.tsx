@@ -4,8 +4,6 @@ import { gql } from '@apollo/client';
 import { useDarkMode } from '../contexts/AppThemeProvider';
 import { DropdownMenuButton } from './dropdown';
 import { FaGithub } from 'react-icons/fa';
-import Tooltip from 'react-bootstrap/esm/Tooltip';
-import { OverlayTrigger } from 'react-bootstrap';
 import { getCurrentDayOfYear } from '../utils';
 
 const GET_USER_DATA = gql`
@@ -145,12 +143,9 @@ function GHContribution({ username, className }: { username: string, className?:
 
     function Stats({ label, value }: { label: string; value: string | undefined }) {
         return (
-            <span className={`text-center hidden sm:block lg:text-md md:text-sm sm:text-xs ${darkMode ? 'text-gray-200' : 'text-gray-600'}`}>
-
-                <span>
-                    {label}:
-                </span>
-                <span className='font-bold'>{` ${value}`}</span>
+            <span className="hidden text-center font-mono text-xs text-[var(--muted)] sm:block lg:text-sm">
+                <span>{label}:</span>
+                <span className="font-semibold text-[var(--ink-soft)]">{` ${value}`}</span>
             </span>
         );
     }
@@ -173,7 +168,7 @@ function GHContribution({ username, className }: { username: string, className?:
         return (
             <div className='pl-2 flex gap-8 sm:gap-10 md:gap-10 lg:gap-8'>
                 {months.map((month, index) => (
-                    <div key={index} className='w-10 text-xs sm:text-lg dark:text-white'>
+                    <div key={index} className='w-10 font-mono text-[0.65rem] text-[var(--muted)] sm:text-sm'>
                         {month}
                     </div>
                 ))}
@@ -247,13 +242,13 @@ function GHContribution({ username, className }: { username: string, className?:
 
 
     return (
-        <div className={`p-4 rounded-lg overflow-x-auto ${className}`}>
+        <div className={`overflow-x-auto rounded-2xl border border-[var(--rule)] bg-[var(--surface)] p-5 ${className ?? ''}`}>
             <div className='flex flex-grow justify-between '>
                 <div className='flex flex-grow'>
                     <div className='flex flex-col'>
                         <div className='flex space-x-2'>
-                            <p className={`text-md md:text-2xl sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                                Github Contributions
+                            <p className="font-display text-base font-semibold text-[var(--ink)] sm:text-lg">
+                                GitHub Contributions
                             </p>
                             <DropdownMenuButton
                                 onClick={setGraphYear}
@@ -272,22 +267,21 @@ function GHContribution({ username, className }: { username: string, className?:
                         <Stats label='total Contributions' value={loading ? '' : contributionStats?.totalContributions.toString()} />
                     </div>
                 </div>
-                <OverlayTrigger overlay={<Tooltip id={`tip-github`}>{username}</Tooltip>}>
-                    <a
-                        href={`https://github.com/${username}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-decoration-none me-3"
-                    >
-                        <FaGithub
-                            className='h-8 w-8 cursor-pointer dark:text-white' />
-                    </a>
-                </OverlayTrigger>
+                <a
+                    href={`https://github.com/${username}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`GitHub: ${username}`}
+                    title={username}
+                    className="text-[var(--ink-soft)] transition-colors hover:text-[var(--brand)]"
+                >
+                    <FaGithub className='h-7 w-7 cursor-pointer' />
+                </a>
             </div>
             <div className='flex items-center'>
                 <div className='flex flex-col gap-1 lg:mt-5 md:mt-4 sm: xs:mt-2 text-xs sm:text-lg'>
                     {days.map((day, index) => (
-                        <div key={index} className='w-10 text-xs sm:text-lg dark:text-white'>
+                        <div key={index} className='w-10 font-mono text-[0.65rem] text-[var(--muted)] sm:text-sm'>
                             {day}
                         </div>
                     ))}
